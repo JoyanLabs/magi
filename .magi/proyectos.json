@@ -1,0 +1,43 @@
+{
+  "$schema": "https://magi.framework/projects.json",
+  "version": "1.0.0",
+  "description": "Configuración de proyectos MAGI Framework",
+  
+  "proyectos": [
+    {
+      "id": "san-ignacio",
+      "nombre": "San Ignacio",
+      "descripcion": "Proyecto de Transformación Digital para Clínica San Ignacio de Piura",
+      "config": {
+        "plane": {
+          "workspace": "peruintercorp",
+          "project_id": "0c41848b-b17d-4cc8-b7fc-79e59e136eca",
+          "sprint_actual": "Sprint 1",
+          "sprint_id": "c8d10cf1-e1fb-40fe-bf8a-7fcefdb19aca"
+        },
+        "notebooklm": {
+          "notebook_id": "cc9fa9cf-bd89-41ca-a676-ecbe198cc7df",
+          "titulo": "SAN IGNACIO"
+        },
+        "llm": {
+          "orquestador": "kimi-k2.5",
+          "agentes": "minimax-m2.5"
+        },
+        "engram": {
+          "proyecto": "san-ignacio"
+        }
+      },
+      "metadatos": {
+        "cliente": "Clínica San Ignacio",
+        "equipo": "Peru Intercorp",
+        "fecha_inicio": "2026-02-19"
+      }
+    }
+  ],
+  
+  "config_global": {
+    "workspace_default": "peruintercorp",
+    "notebook_default": "cc9fa9cf-bd89-41ca-a676-ecbe198cc7df",
+    "sincronizacion_automatica": false
+  }
+}

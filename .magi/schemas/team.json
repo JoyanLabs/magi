@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://magi.framework/team.json",
+  "title": "MAGI Team Schema",
+  "description": "Schema para equipos de agentes en MAGI Framework",
+  "type": "object",
+  "required": ["id", "name", "agents"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Identificador único del equipo"
+    },
+    "name": {
+      "type": "string",
+      "description": "Nombre del equipo"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descripción del propósito del equipo"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["stopped", "deploying", "running", "error"],
+      "default": "stopped"
+    },
+    "runtime": {
+      "type": "string",
+      "enum": ["host", "docker", "kubernetes"],
+      "default": "host"
+    },
+    "workspace": {
+      "type": "string",
+      "description": "Ruta del workspace del proyecto"
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "$ref": "agent.json"
+      },
+      "description": "Lista de agentes en el equipo"
+    },
+    "config": {
+      "type": "object",
+      "description": "Configuración del equipo",
+      "properties": {
+        "llm_provider": {
+          "type": "string",
+          "description": "Proveedor de LLM (minimax, kimi, glm, claude)"
+        },
+        "llm_model": {
+          "type": "string",
+          "description": "Modelo específico a usar"
+        },
+        "max_concurrent_tasks": {
+          "type": "integer",
+          "default": 5,
+          "description": "Máximo de tareas concurrentes"
+        },
+        "task_timeout": {
+          "type": "integer",
+          "default": 300,
+          "description": "Timeout de tareas en segundos"
+        },
+        "enable_memory": {
+          "type": "boolean",
+          "default": true,
+          "description": "Habilitar memoria persistente"
+        },
+        "memory_project": {
+          "type": "string",
+          "description": "Proyecto de memoria en Engram"
+        }
+      }
+    },
+    "mcp_servers": {
+      "type": "object",
+      "description": "Servidores MCP disponibles",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "config": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Metadatos adicionales",
+      "additionalProperties": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

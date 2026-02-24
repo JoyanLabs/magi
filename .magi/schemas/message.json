@@ -1,0 +1,247 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://magi.framework/message.json",
+  "title": "MAGI Message Schema",
+  "description": "Schema para mensajes entre agentes en MAGI Framework",
+  "type": "object",
+  "required": ["message_id", "from", "to", "type", "timestamp"],
+  "properties": {
+    "message_id": {
+      "type": "string",
+      "description": "Identificador único del mensaje (UUID)"
+    },
+    "from": {
+      "type": "string",
+      "description": "Agente emisor"
+    },
+    "to": {
+      "type": "string",
+      "description": "Agente receptor (o 'broadcast' para todos)"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "task_assignment",
+        "task_result",
+        "question",
+        "status_update",
+        "context_share",
+        "user_message",
+        "system_command"
+      ],
+      "description": "Tipo de mensaje"
+    },
+    "context": {
+      "type": "object",
+      "description": "Contexto de la conversación",
+      "properties": {
+        "thread_id": {
+          "type": "string",
+          "description": "ID del hilo de conversación"
+        },
+        "relevant_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "IDs relevantes (documentos, tareas, etc.)"
+        }
+      }
+    },
+    "ref_message_id": {
+      "type": "string",
+      "description": "ID del mensaje al que responde"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Contenido del mensaje (varía según el tipo)",
+      "oneOf": [
+        { "$ref": "#/definitions/taskAssignment" },
+        { "$ref": "#/definitions/taskResult" },
+        { "$ref": "#/definitions/question" },
+        { "$ref": "#/definitions/statusUpdate" },
+        { "$ref": "#/definitions/contextShare" },
+        { "$ref": "#/definitions/userMessage" },
+        { "$ref": "#/definitions/systemCommand" }
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp del mensaje"
+    }
+  },
+  "definitions": {
+    "taskAssignment": {
+      "type": "object",
+      "properties": {
+        "instruction": {
+          "type": "string",
+          "description": "Instrucción de la tarea"
+        },
+        "expected_output": {
+          "type": "string",
+          "description": "Output esperado de la tarea"
+        },
+        "deadline_seconds": {
+          "type": "integer",
+          "description": "Deadline en segundos"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "default": "medium"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "IDs de tareas dependencies"
+        }
+      }
+    },
+    "taskResult": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["completed", "failed", "partial"]
+        },
+        "result": {
+          "type": "string",
+          "description": "Resultado de la tarea"
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Archivos/documentos generados"
+        },
+        "error": {
+          "type": "string",
+          "description": "Mensaje de error si falló"
+        },
+        "duration_seconds": {
+          "type": "integer",
+          "description": "Duración de la tarea"
+        }
+      }
+    },
+    "question": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "description": "Pregunta"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Opciones de respuesta (opcional)"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "description": "Si requiere respuesta obligatoria"
+        }
+      }
+    },
+    "statusUpdate": {
+      "type": "object",
+      "properties": {
+        "agent": {
+          "type": "string",
+          "description": "Nombre del agente"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["idle", "working", "error", "restarting", "context_compacting"]
+        },
+        "current_task": {
+          "type": "string",
+          "description": "Tarea actual"
+        },
+        "uptime_seconds": {
+          "type": "integer",
+          "description": "Tiempo activo en segundos"
+        },
+        "context_usage_pct": {
+          "type": "integer",
+          "description": "Uso de contexto en porcentaje"
+        },
+        "tasks_completed": {
+          "type": "integer",
+          "description": "Tareas completadas"
+        },
+        "tasks_failed": {
+          "type": "integer",
+          "description": "Tareas fallidas"
+        },
+        "last_activity": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Última actividad"
+        }
+      }
+    },
+    "contextShare": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Título del contexto compartido"
+        },
+        "content": {
+          "type": "string",
+          "description": "Contenido del contexto"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["document", "decision", "architecture", "requirement", "other"]
+        },
+        "source": {
+          "type": "string",
+          "description": "Fuente del contexto"
+        },
+        "relevance": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        }
+      }
+    },
+    "userMessage": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Contenido del mensaje"
+        },
+        "intent": {
+          "type": "string",
+          "description": "Intención detectada del usuario"
+        }
+      }
+    },
+    "systemCommand": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "string",
+          "enum": ["shutdown", "restart", "compact_context", "pause", "resume", "cancel"]
+        },
+        "args": {
+          "type": "object",
+          "description": "Argumentos del comando"
+        },
+        "reason": {
+          "type": "string",
+          "description": "Razón del comando"
+        }
+      }
+    }
+  }
+}
