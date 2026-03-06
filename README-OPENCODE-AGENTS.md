@@ -7,55 +7,72 @@ Este repositorio contiene los agentes personalizados para OpenCode:
 
 ## Requisitos Previos
 
-1. **OpenCode instalado**
-   ```bash
-   # Instalar OpenCode
-   curl -fsSL https://raw.githubusercontent.com/opencode-ai/opencode/refs/heads/main/install | bash
-   ```
+### 1. OpenCode instalado
+```bash
+# Instalar OpenCode
+curl -fsSL https://raw.githubusercontent.com/opencode-ai/opencode/refs/heads/main/install | bash
+```
 
-2. **Engram instalado** (recomendado para persistencia)
-   ```bash
-   # Instalar Engram
-   brew install engram   # macOS
-   # oDescarga desde: https://github.com/gentleman-programming/engram
-   ```
+### 2. UV (Gestor de paquetes - NECESARIO)
+```bash
+# Instalar UV (si no lo tienes)
+curl -fsSL https://astral.sh/uv/install.sh | bash
 
-## Instalación Rápida
+# O con brew
+brew install uv
+```
 
-### Opción 1: Usar el script instalador
+### 3. Engram instalado (recomendado para persistencia)
+```bash
+# Instalar Engram
+brew install engram   # macOS
+# oDescarga desde: https://github.com/gentleman-programming/engram
+```
+
+### 4. NotebookLM MCP (opcional)
+```bash
+# Instalar notebooklm-mcp-cli con UV
+uv tool install notebooklm-mcp-cli
+
+# Autenticar (abre navegador)
+nlm login
+```
+
+## Instalación
+
+### Paso 1: Clonar el repositorio con submódulos
+
+```bash
+# Clonar con submódulos
+git clone --recurse-submodules https://github.com/JoyanLabs/magi.git
+
+# O si ya clonaste sin submódulos:
+cd magi
+git submodule update --init --recursive
+```
+
+### Paso 2: Ejecutar el script instalador
 
 ```bash
 cd magi
 ./scripts/install-opencode-agents.sh
 ```
 
-### Opción 2: Instalación manual
-
-Si prefieres hacer la instalación manualmente:
-
-#### 1. Copiar skills
+### Paso 3: Configurar API Keys
 
 ```bash
-# Copiar skills a ~/.opencode/skills/
-cp -r .opencode/skills/* ~/.opencode/skills/
+# IMPORTANTE: Copiar el archivo de ejemplo (NO usar el json directo con keys)
+cp .opencode/opencode.json.example ~/.config/opencode/opencode.json
 
-# O crear enlaces simbólicos (recomendado para desarrollo)
-ln -s $(pwd)/.opencode/skills/* ~/.opencode/skills/
+# Editar y reemplazar YOUR_CONTEXT7_API_KEY con tu key real
+# Obtén tu key de: https://context7.com
+nano ~/.config/opencode/opencode.json
 ```
 
-#### 2. Copiar comandos
+### Paso 4: Reiniciar OpenCode
 
 ```bash
-# Copiar comandos a ~/.config/opencode/commands/
-mkdir -p ~/.config/opencode/commands/
-cp .opencode/commands/*.md ~/.config/opencode/commands/
-```
-
-#### 3. Copiar configuración
-
-```bash
-# Copiar configuración de OpenCode
-cp .opencode/opencode.json ~/.config/opencode/opencode.json
+opencode
 ```
 
 ## Uso
@@ -99,6 +116,7 @@ cp .opencode/opencode.json ~/.config/opencode/opencode.json
 
 ```
 magi/
+├── .gitmodules                    # Submódulos del repositorio
 ├── .opencode/
 │   ├── skills/
 │   │   ├── _shared/           # Convenciones compartidas
@@ -107,11 +125,25 @@ magi/
 │   ├── commands/
 │   │   ├── sdd-*.md          # Comandos SDD
 │   │   └── pm-*.md           # Comandos PM
-│   └── opencode.json         # Configuración de agentes
+│   ├── opencode.json         # Configuración (NO subir a git)
+│   └── opencode.json.example # Template con placeholders
+│
+├── references/
+│   ├── agent-teams-lite/    # Submódulo: SDD skills referencia
+│   ├── engram/              # Submódulo: Engram
+│   └── notebooklm-mcp-cli/  # Submódulo: NotebookLM MCP
 │
 └── scripts/
     └── install-opencode-agents.sh  # Script de instalación
 ```
+
+## Referencias de Submódulos
+
+| Repo | URL | Para qué |
+|------|-----|----------|
+| Engram | https://github.com/gentleman-programming/engram | Memoria persistente |
+| notebooklm-mcp-cli | https://github.com/jacob-bd/notebooklm-mcp-cli | NotebookLM MCP |
+| agent-teams-lite | https://github.com/Gentleman-Programming/agent-teams-lite | SDD skills referencia |
 
 ## Configuración de Artefactos
 
@@ -151,6 +183,13 @@ Los skills están en `.opencode/skills/`. Para actualizar:
 3. Ejecuta el script de instalación
 
 ## Resolución de Problemas
+
+### Los submódulos no se clonan
+
+```bash
+# Clonar submódulos manualmente
+git submodule update --init --recursive
+```
 
 ### Los comandos no se detectan
 
