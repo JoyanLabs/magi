@@ -1,11 +1,12 @@
 {
 	"$schema": "https://opencode.ai/config.json",
+	"_comment": "IMPORTANT: Replace API keys with your own. See opencode.json.example for reference.",
 	"mcp": {
 		"context7": {
 			"type": "remote",
 			"url": "https://mcp.context7.com/mcp",
 			"headers": {
-				"CONTEXT7_API_KEY": "ctx7sk-a785402b-ab1f-4b16-a5c4-9b2203d89870"
+				"CONTEXT7_API_KEY": "YOUR_CONTEXT7_API_KEY"
 			},
 			"enabled": true
 		},
@@ -70,15 +71,6 @@
 				"mem_get_observation": true,
 				"mem_update": true
 			},
-			"permissions": {
-				"task": {
-					"*": "deny",
-					"pm-*": "allow",
-					"sdd-*": "allow",
-					"documentador": "allow"
-				}
-			}
-		},
 			"permissions": {
 				"task": {
 					"*": "deny",

@@ -3,7 +3,7 @@
 # ==============================================================================
 # MAGI OpenCode Install Script
 # ==============================================================================
-# Instala los orquestadores SDD y PM en OpenCode para otra computadora
+# Instala los orquestadores SDD y PM en OpenCode de forma GLOBAL
 # Uso: ./install-opencode-agents.sh
 # ==============================================================================
 
@@ -47,7 +47,7 @@ if ! command -v opencode &> /dev/null; then
     echo "   Instala OpenCode desde: https://github.com/opencode-ai/opencode"
     exit 1
 fi
-echo -e "   ✓ OpenCode instalado: $(opencode --version 2>/dev/null || echo 'versión desconodica')"
+echo -e "   ✓ OpenCode instalado: $(opencode --version 2>/dev/null || echo 'versión desconocida')"
 
 # Verificar que existe el directorio de skills
 if [ ! -d "$SKILLS_DIR" ]; then
@@ -57,11 +57,11 @@ fi
 echo -e "   ✓ Skills encontrados en $SKILLS_DIR"
 
 # ==============================================================================
-# Crear directorios necesarios
+# Crear directorios necesarios (INSTALACIÓN GLOBAL)
 # ==============================================================================
 
 echo ""
-echo -e "${BOLD}2. Creando estructura de directorios...${NC}"
+echo -e "${BOLD}2. Creando estructura de directorios (global)...${NC}"
 
 mkdir -p "$SKILLS_TARGET"
 echo -e "   ✓ $SKILLS_TARGET"
@@ -73,11 +73,11 @@ mkdir -p "$COMMANDS_TARGET"
 echo -e "   ✓ $COMMANDS_TARGET"
 
 # ==============================================================================
-# Instalar skills
+# Instalar skills (COPIA GLOBAL)
 # ==============================================================================
 
 echo ""
-echo -e "${BOLD}3. Instalando skills...${NC}"
+echo -e "${BOLD}3. Instalando skills (copia global)...${NC}"
 
 # Copiar skills SDD
 for skill in sdd-init sdd-explore sdd-propose sdd-spec sdd-design sdd-tasks sdd-apply sdd-verify sdd-archive; do
@@ -125,18 +125,8 @@ echo -e "   ✓ Total skills instalados: $(ls -1d $SKILLS_TARGET/*/ 2>/dev/null 
 echo ""
 echo -e "${BOLD}4. Instalando comandos...${NC}"
 
-# Copiar comandos SDD
 if [ -d "$COMMANDS_DIR" ]; then
-    for cmd in "$COMMANDS_DIR"/sdd-*.md; do
-        if [ -f "$cmd" ]; then
-            cmd_name=$(basename "$cmd")
-            cp "$cmd" "$COMMANDS_TARGET/"
-            echo -e "   ✓ $cmd_name"
-        fi
-    done
-    
-    # Copiar comandos PM
-    for cmd in "$COMMANDS_DIR"/pm-*.md; do
+    for cmd in "$COMMANDS_DIR"/*.md; do
         if [ -f "$cmd" ]; then
             cmd_name=$(basename "$cmd")
             cp "$cmd" "$COMMANDS_TARGET/"
@@ -165,19 +155,24 @@ if [ -f "$CONFIG_SOURCE" ]; then
         if grep -q '"sdd-orchestrator"' "$CONFIG_TARGET"; then
             echo -e "   ${YELLOW}  Los orquestadores SDD y PM ya están configurados${NC}"
             echo -e "   ${GREEN}  ✓ Configuración existente preservada${NC}"
+            echo ""
+            echo -e "   ${YELLOW}  ⚠ IMPORTANTE: El archivo de configuración actual puede contener API keys${NC}"
+            echo -e "   ${YELLOW}    Por seguridad, manually copia el archivo de ejemplo y agrega tus keys:${NC}"
+            echo -e "   ${CYAN}    cp $REPO_DIR/.opencode/opencode.json.example $CONFIG_TARGET${NC}"
         else
             # Agregar agentes al final
             echo -e "   ${YELLOW}  Agregando agentes al archivo existente...${NC}"
-            # Por seguridad, simplemente copiamos el nuestro
             cp "$CONFIG_SOURCE" "$CONFIG_TARGET"
             echo -e "   ✓ Configuración actualizada"
         fi
     else
-        cp "$CONFIG_SOURCE" "$CONFIG_TARGET"
-        echo -e "   ✓ Nueva configuración creada"
+        echo -e "   ${YELLOW}⚠ Archivo de configuración no encontrado${NC}"
+        echo -e "   ${YELLOW}  Copia el archivo de ejemplo y agrega tus API keys:${NC}"
+        echo -e "   ${CYAN}  cp $REPO_DIR/.opencode/opencode.json.example $CONFIG_TARGET${NC}"
+        echo -e "   ${YELLOW}  Luego edita $CONFIG_TARGET y reemplaza YOUR_*_KEY con tus keys reales${NC}"
     fi
 else
-    echo -e "   ${YELLOW}⚠ No se encontró archivo de configuración fuente${NC}"
+    echo -e "   ${RED}✗ No se encontró archivo de configuración fuente${NC}"
 fi
 
 # ==============================================================================
@@ -195,6 +190,21 @@ else
 fi
 
 # ==============================================================================
+# Verificar NotebookLM MCP
+# ==============================================================================
+
+echo ""
+echo -e "${BOLD}7. Verificando NotebookLM MCP...${NC}"
+
+if command -v notebooklm-mcp &> /dev/null || command -v nlm &> /dev/null; then
+    echo -e "   ✓ NotebookLM MCP está instalado"
+else
+    echo -e "   ${YELLOW}⚠ NotebookLM MCP no está instalado (recomendado)${NC}"
+    echo -e "   ${YELLOW}  Instala con: npm install -g notebooklm-mcp-cli${NC}"
+    echo -e "   ${YELLOW}  O consulta: https://github.com/jacob-bd/notebooklm-mcp-cli${NC}"
+fi
+
+# ==============================================================================
 # Resumen
 # ==============================================================================
 
@@ -205,13 +215,18 @@ echo -e "${GREEN}${BOLD}╚═════════════════�
 echo ""
 echo -e "${BOLD}Próximos pasos:${NC}"
 echo ""
-echo -e "1. ${CYAB}Reinicia OpenCode${NC} (cierra y vuelve a abrir)"
+echo -e "1. ${BOLD}Reinicia OpenCode${NC} (cierra y vuelve a abrir)"
 echo ""
-echo -e "2. ${CYAN}Para usar SDD:${NC}"
+echo -e "2. ${BOLD}Configura tus API keys:${NC}"
+echo "   - Edita $CONFIG_TARGET"
+echo "   - Reemplaza YOUR_CONTEXT7_API_KEY con tu key"
+echo "   - Agrega otras keys necesarias (Gemini, etc.)"
+echo ""
+echo -e "3. ${CYAN}Para usar SDD:${NC}"
 echo "   - Selecciona el agente 'sdd-orchestrator'"
 echo "   - Escribe: /sdd-init"
 echo ""
-echo -e "3. ${CYAN}Para usar PM:${NC}"
+echo -e "4. ${CYAN}Para usar PM:${NC}"
 echo "   - Selecciona el agente 'pm-orchestrator'"
 echo "   - Escribe: /pm:init"
 echo ""
