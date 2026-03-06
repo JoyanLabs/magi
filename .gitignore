@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+
+# OpenCode (local config - no tracked)
+.opencode/node_modules/
+.opencode/bun.lock
+.opencode/package.json
+
+# Secrets (never commit)
+.env
+.env.local
+.env.*.local
+
+# NotebookLM (local cache - no tracked)
+.notebooklm-mcp-cli/

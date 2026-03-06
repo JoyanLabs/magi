@@ -1,3 +1,6 @@
 [submodule "references/agent-teams-lite"]
 	path = references/agent-teams-lite
 	url = git@github.com:Gentleman-Programming/agent-teams-lite.git
+[submodule "references/engram"]
+	path = references/engram
+	url = https://github.com/gentleman-programming/engram.git
