@@ -1,6 +1,5 @@
 {
 	"$schema": "https://opencode.ai/config.json",
-	"_comment": "IMPORTANT: Replace API keys with your own. See opencode.json.example for reference.",
 	"mcp": {
 		"context7": {
 			"type": "remote",

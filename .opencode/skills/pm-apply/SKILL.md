@@ -111,7 +111,19 @@ Save to appropriate location:
     └── {proyecto-id}-sprint-01-v1.md
 ```
 
-### Step 8: Return Summary
+### Step 8: Copy to openspec/input/ (IMPORTANT)
+
+If mode is `openspec`, ALSO copy to SDD input folder:
+
+1. Create directory: `openspec/input/` (if doesn't exist)
+2. Copy the document there:
+   ```
+   openspec/input/{document-name}.md
+   ```
+
+This allows SDD to read the PM-generated document when implementing.
+
+### Step 9: Return Summary
 
 Return EXACTLY this format:
 
@@ -142,6 +154,41 @@ Return EXACTLY this format:
 - [ ] Review document
 - [ ] Update state in Engram
 - [ ] Index in NotebookLM (optional)
+- [ ] COPY TO OPENSPEC: Copy to `openspec/input/` for SDD use
+
+### COPY TO OPENSPEC (IMPORTANT)
+
+After generating the document, if mode is `openspec`:
+
+1. Create `openspec/input/` directory if it doesn't exist
+2. Copy the generated document to `openspec/input/{document-name}.md`
+3. This makes the document available for SDD to read
+
+```
+openspec/input/
+└── {document-name}.md   ← Copy of generated document
+```
+
+### SDD TRANSITION (IMPORTANT)
+
+At the end of the summary, ALWAYS include this section:
+
+```markdown
+---
+
+## 🚀 READY FOR SDD
+
+To implement this with SDD, tell the SDD Orchestrator:
+
+"/sdd-new {change-name}
+
+The context is in: openspec/input/{document-name}.md"
+
+Then SDD will:
+1. Read this document from openspec/input/
+2. Create technical specifications in openspec/changes/{change-name}/
+3. Implement the code
+```
 ```
 
 ## Document Templates
