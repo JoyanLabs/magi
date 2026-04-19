@@ -1,114 +1,81 @@
 # MAGI Framework
 
-> Sistema Multi-Agente Agnóstico para Automatización de Proyectos de Software
+> Sistema Multi-Agente para Automatización de Proyectos de Software
 
-## 🚀 Quick Start
+---
 
-### Para nuevos proyectos
+## 🧱 Estructura del Repositorio
 
-1. Copia la estructura de templates:
+```
+magi/
+├── PLAN.md                    # Plan de implementación completo
+├── ROADMAP-Proyecto-Documental-AI-Ready.md  # Roadmap de documentación
+│
+├── framework/                 # Arquitectura del framework MAGI
+│   ├── ARCHITECTURE.md        # Arquitectura v2.0 del sistema
+│   ├── config.json            # Configuración multi-LLM
+│   ├── schemas/               # JSON schemas (agent, message, team)
+│   └── templates/             # Plantillas de documentos
+│
+├── agents/                    # Agentes configurados para OpenCode
+│   ├── opencode.json          # Configuración de agentes y MCP
+│   ├── opencode.json.example  # Template con API keys
+│   ├── MCP-CONFIG-TEMPLATE.md # Referencia de configuración MCP
+│   ├── agents/                # Definiciones de agentes
+│   ├── commands/              # Comandos (/sdd-*, /pm-*)
+│   └── skills/                # Skills SDD, PM, Cyber
+│
+└── research/                  # Investigaciones
+    ├── INDEX.md               # Índice de investigaciones
+    └── game-theory/           # Teoría de juegos & multi-agent AI
+```
+
+## 🎯 Qué es MAGI
+
+MAGI es un framework de automatización multi-agente que combina:
+
+- **Orquestación** de agentes especializados (Documentador, Arquitecto, Scrum Master)
+- **Memoria persistente** entre sesiones (Engram)
+- **Comunicación estructurada** entre agentes
+- **Soporte multi-LLM** (Kimi K2.5, MiniMax, GLM-5, Claude)
+- **Despliegue flexible** (host o Docker)
+
+## 🛠️ Agentes Configurados
+
+Este repositorio incluye 3 orquestadores listos para OpenCode:
+
+| Agente | Comandos | Función |
+|--------|----------|---------|
+| **SDD Orchestrator** | `/sdd-init`, `/sdd-new`, `/sdd-apply`, `/sdd-verify`, `/sdd-archive` | Desarrollo basado en especificaciones |
+| **PM Orchestrator** | `/pm:init`, `/pm:explore`, `/pm:new`, `/pm:apply`, `/pm:verify` | Gestión de proyectos y documentación |
+| **Cyber Orchestrator** | `/cyber:lab`, `/cyber:recon`, `/cyber:exploit` | Pentesting y preparación eJPT |
+
+## 📋 Instalación
+
 ```bash
-cp -r templates/* ./tu-proyecto/
-```
+# Instalar desde el repositorio
+./scripts/install-opencode-agents.sh
 
-2. Configura los skills:
-```bash
-cd skills
-./setup.sh --all
-```
-
-3. Personaliza AGENTS.md para tu proyecto
-
-### Estructura básica
-
-```
-tu-proyecto/
-├── llms.txt                    # Índice de conocimiento
-├── AGENTS.md                   # Configuración de agentes
-├── docs/                       # Documentación
-│   ├── 01-definicion-sistema.md
-│   ├── epicas/
-│   └── gestion/
-├── skills/                     # Skills del proyecto
-│   ├── setup.sh
-│   └── {skill-name}/
-└── src/                        # Código fuente
+# O manualmente:
+# 1. Copiar skills y commands a ~/.config/opencode/
+# 2. Configurar API keys en ~/.config/opencode/opencode.json
 ```
 
 ## 📚 Documentación
 
-- [PLAN.md](PLAN.md) - Plan de implementación completo
-- [templates/](templates/) - Plantillas de documentos
-- [skills/](skills/) - Skills base (en construcción)
-
-## 🎯 Características
-
-- **Agnóstico**: Funciona con cualquier LLM (Claude, Kimi, GPT, etc.)
-- **Estándares Abiertos**: Agent Skills, llms.txt, MCP
-- **Escalable**: Fases pequeñas y acumulativas
-- **Arquitectura Hexagonal**: Puertos y adaptadores para integraciones
+- [PLAN.md](PLAN.md) — Plan de implementación completo
+- [framework/ARCHITECTURE.md](framework/ARCHITECTURE.md) — Arquitectura del sistema
+- [research/INDEX.md](research/INDEX.md) — Centro de investigaciones
 
 ## 🔗 Recursos
 
 - [Agent Skills Spec](https://opencode.ai/docs/skills/)
 - [llms.txt Spec](https://llmstxt.cool/)
 - [MCP Spec](https://modelcontextprotocol.io/)
-
-## 📋 Phases
-
-| Phase | Description | Status |
-|-------|-------------|--------|
-| 0 | Foundation (templates, structure) | ✅ |
-| 1 | Skills Base (patterns, frameworks) | ✅ |
-| 2 | CLI + NotebookLM | ✅ |
-| 3 | Agentes Integration (SDD + PM) | ✅ |
-| 4 | Plane + GitHub | ⏳ |
-| 5 | Notifications | ⏳ |
-| 6 | Multi-Agent Orchestration | ✅ |
+- [Engram](https://github.com/Gentleman-Programming/engram)
+- [OpenCode](https://opencode.ai)
 
 ---
 
-## 🛠️ OpenCode Agents (SDD + PM)
-
-Este repositorio incluye agentes configurados para OpenCode:
-
-- **SDD Orchestrator** - Desarrollo basado en especificaciones
-- **PM Orchestrator** - Gestión de proyectos
-
-### Instalación
-
-Ver [README-OPENCODE-AGENTS.md](README-OPENCODE-AGENTS.md) para instrucciones detalladas.
-
-### Requisitos
-
-1. **OpenCode**: https://github.com/opencode-ai/opencode
-2. **UV** (gestor de paquetes):
-   ```bash
-   # Instalar UV
-   curl -fsSL https://astral.sh/uv/install.sh | bash
-   # O con brew
-   brew install uv
-   ```
-3. **Engram** (memoria persistente):
-   ```bash
-   brew install engram
-   # o: https://github.com/gentleman-programming/engram
-   ```
-4. **notebooklm-mcp-cli**:
-   ```bash
-   uv tool install notebooklm-mcp-cli
-   nlm login  # Autenticar
-   ```
-
-### Referencias de submódulos
-
-| Repo | URL |
-|------|-----|
-| Engram | https://github.com/gentleman-programming/engram |
-| notebooklm-mcp-cli | https://github.com/jacob-bd/notebooklm-mcp-cli |
-| agent-teams-lite | https://github.com/Gentleman-Programming/agent-teams-lite |
-
----
-
-**Versión:** 1.1.0
+**Versión:** 2.0.0
 **Mantenido por:** Joyan Labs

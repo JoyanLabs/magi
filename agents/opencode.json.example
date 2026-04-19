@@ -1,5 +1,6 @@
 # API Keys - NO SUBIR AL REPOSITORIO
 # Copia este archivo a opencode.json y reemplaza los valores
+# Ver MCP-CONFIG-TEMPLATE.md para más opciones
 
 {
 	"$schema": "https://opencode.ai/config.json",
@@ -8,7 +9,7 @@
 			"type": "remote",
 			"url": "https://mcp.context7.com/mcp",
 			"headers": {
-				"CONTEXT7_API_KEY": "TU_API_KEY_DE_CONTEXT7"
+				"CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
 			},
 			"enabled": true
 		},
@@ -22,6 +23,12 @@
 			"command": ["notebooklm-mcp"],
 			"enabled": true
 		}
+		// Descomenta para agregar Plane (gestión de proyectos):
+		// "plane": {
+		// 	"type": "local",
+		// 	"command": ["/home/joshrm/.local/bin/plane-mcp-server"],
+		// 	"enabled": true
+		// }
 	},
 	"plugin": ["opencode-gemini-auth@latest"],
 	"agent": {
