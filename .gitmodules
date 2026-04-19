@@ -1,9 +1,0 @@
-[submodule "references/agent-teams-lite"]
-	path = references/agent-teams-lite
-	url = git@github.com:Gentleman-Programming/agent-teams-lite.git
-[submodule "references/engram"]
-	path = references/engram
-	url = https://github.com/gentleman-programming/engram.git
-[submodule "references/notebooklm-mcp-cli"]
-	path = references/notebooklm-mcp-cli
-	url = https://github.com/jacob-bd/notebooklm-mcp-cli.git
