@@ -14,6 +14,115 @@ MAGI se construye sobre tres pilares de Teoría de Juegos:
 
 ---
 
+## Fase 0 — Roles y Protección Comunitaria
+
+**Objetivo:** Formalizar los roles comunitarios, definir reputación multidimensional e implementar mecanismos de protección contra dinámicas humanas problemáticas (miedo a explotar, burnout, contribuciones no técnicas).
+
+### Componentes
+
+#### Reputación Multidimensional
+
+Cada miembro tiene cuatro scores independientes que no se agregan en uno solo:
+
+| Eje | Rol | Qué se mide |
+|-----|-----|-------------|
+| `Technical` | Desarrollador / Arquitecto | PRs, code review, arquitectura, deuda técnica |
+| `Strategic` | Líder Estratégico / Visionario | Roadmap, branding, posicionamiento, visión de producto |
+| `Stewardship` | Steward / Patrono / Financiero | Presupuesto, infraestructura, sostenibilidad, recursos |
+| `Community` | Mentor / Mediador / Facilitador | Mentoría, mediación, onboarding, cohesión |
+
+- Cada eje se calcula con métricas propias y decaimiento temporal independiente
+- No existe un "score total": un miembro puede ser `Technical: 95, Community: 15`
+- Las decisiones de gobernanza requieren quórum en el eje relevante
+
+#### Checks and Balances entre Roles
+
+- **Veto Estratégico:** El `Strategic Leader` puede vetar decisiones técnicas que comprometan la visión del producto
+- **Veto Financiero:** El `Steward` puede vetar decisiones estratégicas que comprometan la sostenibilidad
+- **Veto Comunitario:** El rol con mayor `Community` activa revisión obligatoria ante impacto negativo documentado en la comunidad
+- **Sobreescritura:** Los vetos pueden ser sobreescritos por quórum cualificado (2/3) de los tres ejes combinados, obligando a negociación y coaliciones
+
+#### Proveedores Externos
+
+- Rol transaccional sin derecho a voto ni gobernanza
+- Reputación binaria: cumple o no cumple
+- Contratos documentados con entregables verificables
+- Contratos mayores a umbral requieren aprobación `Steward` + `Strategic Leader`
+
+---
+
+### Casos Humanos Complejos
+
+MAGI no solo modela agentes racionales abstractos — resuelve problemas reales que aparecen en comunidades de desarrollo:
+
+#### Caso 1: "El Desarrollador Reticente" (Miedo a explotar)
+
+**Problema:** Un desarrollador aporta poco código porque teme que otros se apropien de su trabajo, lo modifiquen sin crédito, o lo usen como base sin compensación. Esto es un dilema clásico de confianza en juegos repetidos: el miedo a ser "el tonto" (sucker) paraliza la cooperación.
+
+**Mecanismo: Atribución Inmutable**
+- El código es tuyo para siempre. Si alguien modifica tu contribución, el sistema registra automáticamente la autoría original.
+- Los forks o modificaciones requieren citar al autor original con un link al commit/pull request base.
+- La reputación `Technical` del modificador se ve afectada negativamente si omite la atribución.
+- La reputación `Technical` del autor original se mantiene intacta incluso si otros modifican su código.
+
+**Mecanismo: Forking Rights**
+- Si un miembro no está de acuerdo con la dirección que la comunidad toma en su contribución, puede bifurcar (fork) su trabajo.
+- El fork mantiene la autoría original y crea una línea de desarrollo independiente.
+- La comunidad puede decidir cuál línea adoptar, pero el autor no es obligado a mantener código en contra de su voluntad.
+- Esto resuelve el dilema sin necesidad de consenso total: si no podés cooperar, al menos no estás obligado a ser "el tonto".
+
+**Mecanismo: Credit Splitting**
+- PRs co-creados suman reputación para todos los contribuyentes, ponderada por aportación.
+- El sistema registra quién escribió qué línea (no solo quién hizo commit).
+- Esto incentiva la colaboración abierta sin miedo a que otros se apropien del crédito.
+
+#### Caso 2: "La Estrella Técnica" (Burnout / Sobrecarga de Ops)
+
+**Problema:** Un desarrollador excepcional aporta demasiado código, hace toda la arquitectura, y termina quemándose (burnout) porque nadie más puede o quiere asumir la carga. Con el tiempo, este miembro opaca a los demás y la comunidad se vuelve dependiente de una sola persona — un punto único de fallo humano.
+
+**Mecanismo: Mentorship Tax**
+- Para mantener o aumentar el status "Senior" en el eje `Technical`, un miembro debe mantener un score mínimo en el eje `Community` (mentoría).
+- Si un miembro tiene `Technical: 95` pero `Community: 10`, su score `Technical` comienza a decaer más rápido que el normal.
+- La lógica: un desarrollador senior que no forma a otros está extrayendo valor neto de la comunidad a largo plazo.
+- El decaimiento acelerado es predecible y transparente: el miembro sabe exactamente qué debe hacer para recuperar su reputación técnica.
+
+**Mecanismo: Credit Splitting (aplicado a código)**
+- PRs co-creados suman reputación para ambos contribuyentes.
+- La estrella técnica gana reputación `Community` por mentorizar, lo que reduce la presión de tener que hacer todo sola.
+- La reputación `Technical` de otros miembros crece al participar, reduciendo la dependencia del sistema en una sola persona.
+
+**Mecanismo: Degrado de Dependencia**
+- El sistema detecta automáticamente si una sola persona tiene >60% de las contribuciones `Technical` activas.
+- Cuando se activa esta alerta, el sistema recomienda (no impone) redistribuir responsabilidades.
+- La redistribución se negocia via collective-choice (Fase 4), pero la alerta es automática e ineludible.
+
+#### Caso 3: "El Desarrollador Racional" (Contribuye poco, usa mucho)
+
+**Problema:** Un miembro consume los frutos del trabajo comunitario sin aportar proporcionalmente. Es racional desde el punto de vista individual (free rider), pero dañino para la cooperación a largo plazo.
+
+**Mecanismo: Contribución Mínima Configurada**
+- La comunidad define un umbral mínimo de contribución (en cualquiera de los 4 ejes) para mantener privilegios de voto.
+- Si un miembro está por debajo del umbral por un período prolongado, entra en modo "observación": puede leer y participar en mediación, pero no vota en decisiones con impacto en recursos o arquitectura.
+- Esto no es punitivo: el miembro puede recuperar privilegios en cualquier momento con una contribución verificable en cualquier eje.
+
+**Mecanismo: Reputación Comunitaria como Red de Seguridad**
+- Un miembro con `Community: 80` puede "prestar" parte de su reputación comunitaria para que otros recuperen privilegios temporalmente.
+- Esto incentiva a los miembros activos a mentorizar y apoyar a los reticentes, en lugar de simplemente expulsarlos.
+
+---
+
+### Entregables
+
+- [ ] Módulo `roles/` con definición de perfiles multidimensionales
+- [ ] Sistema de atribución inmutable con registro de autoría
+- [ ] Motor de forking rights con gestión de líneas de desarrollo
+- [ ] Mecanismo de mentorship tax con decaimiento condicional
+- [ ] Detector automático de dependencia de contribuidor único
+- [ ] Sistema de credit splitting para PRs co-creados
+- [ ] Tests de simulación de casos humanos complejos
+
+---
+
 ## Fase 1 — Governing Engine
 
 **Objetivo:** Implementar el motor central de decisiones basado en estrategias de Teoría de Juegos.
@@ -194,10 +303,12 @@ MAGI se construye sobre tres pilares de Teoría de Juegos:
 ## Integración entre Fases
 
 ```
+Fase 0: Roles y Protección Comunitaria
+    ↓ (define perfiles multidimensionales)
 Fase 1: Governing Engine
-    ↓ (provece scores de cooperación)
+    ↓ (provece scores de cooperación por eje)
 Fase 2: Reputation System
-    ↓ (provece reputación para ponderación)
+    ↓ (provece reputación para ponderación por eje)
 Fase 3: Quality Gates
     ↓ (filtra propuestas para gobernanza)
 Fase 4: Gobernanza Policéntrica
@@ -206,7 +317,7 @@ Fase 5: Interfaz Comunitaria
     ↓ (expone datos para transparencia)
 ```
 
-Cada fase construye sobre la anterior. No tiene sentido tener quality gates sin reputación, ni reputación sin un governing engine que defina qué acciones son positivas o negativas.
+Cada fase construye sobre la anterior. Sin roles definidos, no tiene sentido calcular reputación. Sin reputación, no tiene sentido ponderar votos. Sin governing engine, no hay forma de saber qué acciones son positivas o negativas.
 
 ---
 

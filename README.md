@@ -45,6 +45,47 @@ Inspirado en el trabajo de Elinor Ostrom (Premio Nobel de Economía 2024), MAGI 
 
 ---
 
+## Roles y Dinámicas Comunitarias
+
+### Reputación Multidimensional
+
+La reputación en MAGI no se reduce a una sola métrica. Cada miembro posee un perfil de reputación con cuatro ejes independientes que reflejan contribuciones en dominios distintos:
+
+| Eje | Rol asociado | Qué mide |
+|-----|-------------|----------|
+| `Technical` | Desarrollador / Arquitecto | Calidad, cantidad y mantenibilidad del código aportado |
+| `Strategic` | Líder Estratégico / Visionario | Visión del producto, branding, posicionamiento, roadmap |
+| `Stewardship` | Steward / Patrono / Financiero | Gestión de recursos, finanzas, infraestructura, sostenibilidad |
+| `Community` | Mentor / Mediador / Facilitador | Mentoría, mediación de conflictos, onboarding, cohesión del grupo |
+
+Cada eje se calcula de forma independiente con sus propios scores, decaimiento temporal y mecanismos de redención. Un miembro puede ser `Technical: 95` y `Community: 20` sin que uno afecte al otro. Esto evita que la dominancia en un área opaque deficiencias en otra.
+
+**Implicación en gobernanza:** Diferentes decisiones requieren diferentes perfiles de reputación. Un cambio de roadmap requiere quórum de reputación `Strategic`. Una decisión de presupuesto requiere quórum de reputación `Stewardship`. Un cambio de arquitectura requiere quórum de reputación `Technical`.
+
+### Checks and Balances
+
+Para prevenir la concentración de poder y los escenarios de explotación, MAGI implementa mecanismos de veto cruzado entre roles:
+
+- **Veto Estratégico:** El `Strategic Leader` (Líder Estratégico) puede vetar decisiones técnicas que comprometan la visión del producto o la experiencia del usuario, incluso si el eje `Technical` aprueba la propuesta.
+- **Veto Financiero:** El `Steward` (Patrono/Financiero) puede vetar decisiones estratégicas que comprometan la sostenibilidad financiera o el uso de recursos, incluso si el eje `Strategic` las aprueba.
+- **Veto Comunitario:** El rol con mayor reputación en `Community` puede activar una revisión obligatoria cuando una decisión (técnica, estratégica o financiera) genere un impacto negativo documentado en la cohesión o bienestar de la comunidad.
+
+Estos vetos no son absolutos: pueden ser sobreescritos por un quórum cualificado (2/3) de los tres ejes combinados, lo que obliga a negociar y construir coaliciones.
+
+### Proveedores Externos
+
+MAGI reconoce que no todos los participantes son miembros de pleno derecho. El rol de **Contratista/Proveedor** es transaccional:
+
+- Aporta bienes o servicios específicos a cambio de compensación
+- **No tiene derecho a voto ni participación en gobernanza**
+- Su reputación es binaria: cumple o no cumple (sin acumulación de poder)
+- Puede ser contratado por el `Steward` con aprobación del `Strategic Leader` si el monto supera un umbral configurado
+- Su relación queda documentada en contratos inmutables con entregables verificables
+
+Este rol existe para resolver el problema de los "free riders" profesionales: quienes consumen recursos comunitarios sin contribuir a su gobernanza ni a su sostenibilidad.
+
+---
+
 ## Arquitectura
 
 ```
@@ -88,6 +129,15 @@ Inspirado en el trabajo de Elinor Ostrom (Premio Nobel de Economía 2024), MAGI 
 ---
 
 ## Roadmap
+
+### Fase 0 — Roles y Protección Comunitaria (Nuevo)
+- [ ] Definición de reputación multidimensional (4 ejes)
+- [ ] Sistema de checks and balances entre roles
+- [ ] Definición del rol de Proveedores Externos
+- [ ] Mecanismos de protección contra explotación (atribución inmutable, forking rights)
+- [ ] Mentorship Tax para prevenir burnout de contribuidores clave
+
+### Fase 1 — Núcleo de Teoría de Juegos
 
 ### Fase 1 — Núcleo de Teoría de Juegos
 - [ ] Implementación de Tit for Tat y Generous Tit for Tat
