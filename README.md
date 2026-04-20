@@ -1,5 +1,7 @@
 # MAGI — Ecosistema y Gobernanza Comunitaria
 
+> MAGI Propuesta v1.0
+
 > El Cerebro que conecta proyectos, liquidez y automatización
 
 ---
@@ -129,8 +131,8 @@ MAGI reconoce que no todos los participantes son miembros de pleno derecho. El r
 │                       MAGI ECOSYSTEM                             │
 │                                                                  │
 │  ┌─────────────┐    ┌──────────────────┐    ┌────────────────┐  │
-│  │   HERMES    │    │    MAGI CORE     │    │   PROJECTS     │  │
-│  │  (Sensor)   │───>│   (Cerebro)      │<──>│   (Hub)        │  │
+  │  │   HERMES    │    │    MAGI CORE     │    │   PROJECTS     │  │
+  │  │ (Ojo Vigilante)│───>│   (Cerebro)      │<──>│   (Hub)        │  │
 │  │             │    │                  │    │                │  │
 │  │ - Monitoreo │    │ ┌──────────────┐ │    │ - Gestión      │  │
 │  │ - Alertas   │    │ │ Governing    │ │    │ - Liquidez     │  │
@@ -162,7 +164,7 @@ MAGI reconoce que no todos los participantes son miembros de pleno derecho. El r
 
 ### Componentes
 
-- **Hermes (Sensor)** — El agente sensor que automatiza el monitoreo. Captura datos, genera alertas y provee feedback en tiempo real al ecosistema.
+- **Hermes (Ojo Vigilante)** — Subdivisión headless de MAGI que automatiza el monitoreo y la vigilancia del ecosistema. MAGI no solo media; vigila y ejecuta a través de agentes headless como Hermes. Captura datos, genera alertas y provee feedback en tiempo real al ecosistema.
 - **MAGI Core (Cerebro)** — Motor central que aplica Teoría de Juegos, gestiona reputación, agentes autónomos y automatización.
 - **Projects Hub (Hub)** — Gestión de proyectos comunitarios, seguimiento de liquidez, aportes y recursos.
 - **Flywheel Engine** — Motor económico que rastrea el ciclo de valor y coordina la reinversión en automatización.
@@ -204,7 +206,7 @@ MAGI reconoce que no todos los participantes son miembros de pleno derecho. El r
 - [ ] Integración de herramientas en el Flywheel
 
 ### Fase 5 — Automatización Total
-- [ ] Hermes: agente sensor completo
+- [ ] Hermes (Ojo Vigilante): agente headless de monitoreo y vigilancia
 - [ ] Monitoreo automático del ecosistema
 - [ ] Alertas predictivas y respuestas automáticas
 - [ ] Ciclo de reinversión automatizado

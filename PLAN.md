@@ -248,15 +248,15 @@ Cada MCP creado e integrado otorga **+40 puntos de reputación `Architecture`** 
 
 ## Fase 5 — Automatización Total
 
-**Objetivo:** Hermes como sensor permanente del ecosistema, cerrando el ciclo de la Rueda de Valor con monitoreo en tiempo real y respuestas automáticas.
+**Objetivo:** Hermes como Ojo Vigilante del ecosistema, cerrando el ciclo de la Rueda de Valor con monitoreo en tiempo real y respuestas automáticas.
 
 ### Visión
 
-Hermes es el sistema nervioso del ecosistema. Mientras MAGI Core es el cerebro que decide, Hermes es lo que ve, escucha y siente. Juntos, forman un sistema autónomo que monitorea, alerta y actúa — reduciendo la fricción humana al mínimo y permitiendo que la comunidad se enfoque en lo que mejor hace: crear valor.
+Hermes es la subdivisión vigilante de MAGI. MAGI es el cerebro que orquesta y decide; Hermes es uno de sus "ojos" headless que monitorea, alerta y actúa bajo las órdenes de MAGI. Juntos, forman un sistema autónomo que vigila, detecta y responde — reduciendo la fricción humana al mínimo y permitiendo que la comunidad se enfoque en lo que mejor hace: crear valor.
 
 ### Componentes
 
-#### Hermes — El Sensor
+#### Hermes — El Ojo Vigilante
 
 - **Monitoreo en Tiempo Real:** Escucha todos los canales (Git, Discord, MCPs, proyectos) y detecta eventos relevantes
 - **Alertas Inteligentes:** Genera alertas basadas en patrones, no en reglas estáticas. Detecta burnout, conflictos, oportunidades
@@ -277,7 +277,7 @@ Hermes detecta evento → MAGI analiza → MAGI decide → Acción automática �
 
 ### Entregables
 
-- [ ] Módulo `hermes/` con sensor de monitoreo en tiempo real
+- [ ] Módulo `hermes/` con Ojo Vigilante de monitoreo en tiempo real
 - [ ] Event stream normalizado con todos los tipos de eventos del ecosistema
 - [ ] Motor de reglas adaptativas en MAGI Core
 - [ ] Sistema de respuestas automatizadas configurables
@@ -294,7 +294,7 @@ Hermes detecta evento → MAGI analiza → MAGI decide → Acción automática �
 │                                                                      │
 │  ┌──────────────────┐    ┌──────────────────┐    ┌───────────────┐  │
 │  │     Hermes       │    │   MAGI Core      │    │   Proyectos   │  │
-│  │   (Sensor)       │    │   (Cerebro)      │    │     (Hub)     │  │
+│  │ (Ojo Vigilante)  │    │   (Cerebro)      │    │     (Hub)     │  │
 │  │                  │    │                  │    │               │  │
 │  │ ┌──────────────┐ │    │ ┌──────────────┐ │    │ ┌───────────┐ │  │
 │  │ │ Event        │ │    │ │ Governing    │ │    │ │ Project   │ │  │
