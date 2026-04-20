@@ -1,28 +1,51 @@
 # MAGI — Plan de Implementación
 
-> Mediador Comunitario de Joyan — Roadmap basado en Teoría de Juegos
+> El Sistema Operativo de Ecosistema Comunitario — Roadmap basado en Teoría de Juegos
 
 ---
 
 ## Filosofía de Diseño
 
-MAGI se construye sobre tres pilares de Teoría de Juegos:
+MAGI se construye sobre tres pilares de Teoría de Juegos aplicados a un ecosistema económico:
 
-1. **Cooperación emergente** — Las reglas del sistema hacen que cooperar sea la estrategia dominante a largo plazo
-2. **Perdón estructurado** — Generous Tit for Tat previene espirales de venganza por "ruido" (malentendidos, errores)
-3. **Redención codificada** — La reputación se recupera con acciones, no con promesas
+1. **Cooperación emergente** — Las reglas del sistema hacen que cooperar sea la estrategia dominante a largo plazo, tanto para miembros individuales como para proyectos completos
+2. **Perdón estructurado** — Generous Tit for Tat previene espirales de venganza por "ruido" (malentendidos, errores, información incompleta)
+3. **Redención codificada** — La reputación se recupera con acciones verificables, no con promesas
+4. **Rueda de Valor** — Cada vuelta del ciclo (Proyectos → Ejecución → Ganancia → Reinversión → Automatización) fortalece todo el ecosistema
+
+---
+
+## Matriz de Puntos Actualizada
+
+| Eje | Acción | Puntos |
+|-----|--------|--------|
+| `Technical` | PR aprobado | +10 |
+| `Technical` | Code review significativo | +5 |
+| `Technical` | Arquitectura propuesta y adoptada | +30 |
+| `Technical` | Bug crítico corregido | +15 |
+| `Strategic` | Roadmap aprobado por comunidad | +25 |
+| `Strategic` | Branding/posicionamiento implementado | +20 |
+| `Stewardship` | Presupuesto gestionado exitosamente | +20 |
+| `Stewardship` | Infraestructura nueva o mejorada | +25 |
+| `Community` | Mentoría exitosa documentada | +15 |
+| `Community` | Mediación de conflicto resuelta | +20 |
+| `Community` | Onboarding de nuevo miembro | +10 |
+| `Architecture` | Nuevo agente diseñado e implementado | +50 |
+| `Architecture` | MCP creado e integrado | +40 |
+| `Architecture` | Mejora de infraestructura de MAGI | +30 |
+| `Entrepreneurship` | Lanzamiento de nuevo proyecto comunitario | +100 |
+| `Entrepreneurship` | Inyección de liquidez al ecosistema | +50 |
+| `Entrepreneurship` | Conexión con oportunidad externa | +30 |
 
 ---
 
 ## Fase 0 — Roles y Protección Comunitaria
 
-**Objetivo:** Formalizar los roles comunitarios, definir reputación multidimensional e implementar mecanismos de protección contra dinámicas humanas problemáticas (miedo a explotar, burnout, contribuciones no técnicas).
+**Objetivo:** Formalizar los roles del ecosistema, definir reputación multidimensional (6 ejes) e implementar mecanismos de protección contra dinámicas problemáticas.
 
 ### Componentes
 
-#### Reputación Multidimensional
-
-Cada miembro tiene cuatro scores independientes que no se agregan en uno solo:
+#### Reputación Multidimensional (6 Ejes)
 
 | Eje | Rol | Qué se mide |
 |-----|-----|-------------|
@@ -30,90 +53,52 @@ Cada miembro tiene cuatro scores independientes que no se agregan en uno solo:
 | `Strategic` | Líder Estratégico / Visionario | Roadmap, branding, posicionamiento, visión de producto |
 | `Stewardship` | Steward / Patrono / Financiero | Presupuesto, infraestructura, sostenibilidad, recursos |
 | `Community` | Mentor / Mediador / Facilitador | Mentoría, mediación, onboarding, cohesión |
+| `Architecture` | Arquitecto de Agentes | Diseño/mejora de MAGI, agentes, infraestructura de automatización |
+| `Entrepreneurship` | Emprendedor / Conector | Proyectos nuevos, liquidez inyectada, conexiones externas |
 
 - Cada eje se calcula con métricas propias y decaimiento temporal independiente
-- No existe un "score total": un miembro puede ser `Technical: 95, Community: 15`
+- No existe un "score total": un miembro puede ser `Technical: 95, Entrepreneurship: 10`
 - Las decisiones de gobernanza requieren quórum en el eje relevante
 
-#### Checks and Balances entre Roles
+#### Checks and Balances entre Ejes
 
-- **Veto Estratégico:** El `Strategic Leader` puede vetar decisiones técnicas que comprometan la visión del producto
-- **Veto Financiero:** El `Steward` puede vetar decisiones estratégicas que comprometan la sostenibilidad
-- **Veto Comunitario:** El rol con mayor `Community` activa revisión obligatoria ante impacto negativo documentado en la comunidad
-- **Sobreescritura:** Los vetos pueden ser sobreescritos por quórum cualificado (2/3) de los tres ejes combinados, obligando a negociación y coaliciones
+- **Veto Estratégico:** El rol con mayor `Strategic` puede vetar decisiones técnicas que comprometan la visión del producto
+- **Veto Financiero:** El rol con mayor `Stewardship` puede vetar decisiones estratégicas que comprometan la sostenibilidad
+- **Veto Comunitario:** El rol con mayor `Community` activa revisión obligatoria ante impacto negativo documentado
+- **Veto Arquitectónico:** El rol con mayor `Architecture` puede vetar cambios que comprometan la integridad de la infraestructura de agentes
+- **Sobreescritura:** Los vetos pueden ser sobreescritos por quórum cualificado (2/3) de los ejes combinados
 
 #### Proveedores Externos
 
 - Rol transaccional sin derecho a voto ni gobernanza
 - Reputación binaria: cumple o no cumple
 - Contratos documentados con entregables verificables
-- Contratos mayores a umbral requieren aprobación `Steward` + `Strategic Leader`
-
----
 
 ### Casos Humanos Complejos
 
-MAGI no solo modela agentes racionales abstractos — resuelve problemas reales que aparecen en comunidades de desarrollo:
+#### El Desarrollador Reticente (Miedo a explotar)
 
-#### Caso 1: "El Desarrollador Reticente" (Miedo a explotar)
+**Mecanismos:**
+- **Atribución Inmutable:** Autoría registrada automáticamente, forks citan al autor original
+- **Forking Rights:** Bifurcación manteniendo autoría sin obligación de cooperar
+- **Credit Splitting:** PRs co-creados suman reputación para todos los contribuyentes
 
-**Problema:** Un desarrollador aporta poco código porque teme que otros se apropien de su trabajo, lo modifiquen sin crédito, o lo usen como base sin compensación. Esto es un dilema clásico de confianza en juegos repetidos: el miedo a ser "el tonto" (sucker) paraliza la cooperación.
+#### La Estrella Técnica (Burnout / Sobrecarga)
 
-**Mecanismo: Atribución Inmutable**
-- El código es tuyo para siempre. Si alguien modifica tu contribución, el sistema registra automáticamente la autoría original.
-- Los forks o modificaciones requieren citar al autor original con un link al commit/pull request base.
-- La reputación `Technical` del modificador se ve afectada negativamente si omite la atribución.
-- La reputación `Technical` del autor original se mantiene intacta incluso si otros modifican su código.
+**Mecanismos:**
+- **Mentorship Tax:** Para mantener status "Senior" en `Technical`, se requiere score mínimo en `Community`
+- **Degrado de Dependencia:** Detección automática si >60% de contribuciones activas vienen de una persona
+- **Credit Splitting:** Gana reputación `Community` por mentorizar, reduciendo presión individual
 
-**Mecanismo: Forking Rights**
-- Si un miembro no está de acuerdo con la dirección que la comunidad toma en su contribución, puede bifurcar (fork) su trabajo.
-- El fork mantiene la autoría original y crea una línea de desarrollo independiente.
-- La comunidad puede decidir cuál línea adoptar, pero el autor no es obligado a mantener código en contra de su voluntad.
-- Esto resuelve el dilema sin necesidad de consenso total: si no podés cooperar, al menos no estás obligado a ser "el tonto".
+#### El Desarrollador Racional (Free rider)
 
-**Mecanismo: Credit Splitting**
-- PRs co-creados suman reputación para todos los contribuyentes, ponderada por aportación.
-- El sistema registra quién escribió qué línea (no solo quién hizo commit).
-- Esto incentiva la colaboración abierta sin miedo a que otros se apropien del crédito.
-
-#### Caso 2: "La Estrella Técnica" (Burnout / Sobrecarga de Ops)
-
-**Problema:** Un desarrollador excepcional aporta demasiado código, hace toda la arquitectura, y termina quemándose (burnout) porque nadie más puede o quiere asumir la carga. Con el tiempo, este miembro opaca a los demás y la comunidad se vuelve dependiente de una sola persona — un punto único de fallo humano.
-
-**Mecanismo: Mentorship Tax**
-- Para mantener o aumentar el status "Senior" en el eje `Technical`, un miembro debe mantener un score mínimo en el eje `Community` (mentoría).
-- Si un miembro tiene `Technical: 95` pero `Community: 10`, su score `Technical` comienza a decaer más rápido que el normal.
-- La lógica: un desarrollador senior que no forma a otros está extrayendo valor neto de la comunidad a largo plazo.
-- El decaimiento acelerado es predecible y transparente: el miembro sabe exactamente qué debe hacer para recuperar su reputación técnica.
-
-**Mecanismo: Credit Splitting (aplicado a código)**
-- PRs co-creados suman reputación para ambos contribuyentes.
-- La estrella técnica gana reputación `Community` por mentorizar, lo que reduce la presión de tener que hacer todo sola.
-- La reputación `Technical` de otros miembros crece al participar, reduciendo la dependencia del sistema en una sola persona.
-
-**Mecanismo: Degrado de Dependencia**
-- El sistema detecta automáticamente si una sola persona tiene >60% de las contribuciones `Technical` activas.
-- Cuando se activa esta alerta, el sistema recomienda (no impone) redistribuir responsabilidades.
-- La redistribución se negocia via collective-choice (Fase 4), pero la alerta es automática e ineludible.
-
-#### Caso 3: "El Desarrollador Racional" (Contribuye poco, usa mucho)
-
-**Problema:** Un miembro consume los frutos del trabajo comunitario sin aportar proporcionalmente. Es racional desde el punto de vista individual (free rider), pero dañino para la cooperación a largo plazo.
-
-**Mecanismo: Contribución Mínima Configurada**
-- La comunidad define un umbral mínimo de contribución (en cualquiera de los 4 ejes) para mantener privilegios de voto.
-- Si un miembro está por debajo del umbral por un período prolongado, entra en modo "observación": puede leer y participar en mediación, pero no vota en decisiones con impacto en recursos o arquitectura.
-- Esto no es punitivo: el miembro puede recuperar privilegios en cualquier momento con una contribución verificable en cualquier eje.
-
-**Mecanismo: Reputación Comunitaria como Red de Seguridad**
-- Un miembro con `Community: 80` puede "prestar" parte de su reputación comunitaria para que otros recuperen privilegios temporalmente.
-- Esto incentiva a los miembros activos a mentorizar y apoyar a los reticentes, en lugar de simplemente expulsarlos.
-
----
+**Mecanismos:**
+- **Contribución Mínima Configurada:** Umbral mínimo para mantener privilegios de voto
+- **Reputación Comunitaria como Red de Seguridad:** Miembros con alto `Community` pueden prestar reputación temporalmente
 
 ### Entregables
 
-- [ ] Módulo `roles/` con definición de perfiles multidimensionales
+- [ ] Módulo `roles/` con definición de perfiles multidimensionales (6 ejes)
 - [ ] Sistema de atribución inmutable con registro de autoría
 - [ ] Motor de forking rights con gestión de líneas de desarrollo
 - [ ] Mecanismo de mentorship tax con decaimiento condicional
@@ -129,20 +114,9 @@ MAGI no solo modela agentes racionales abstractos — resuelve problemas reales 
 
 ### Componentes
 
-- **Tit for Tat Engine**
-  - Estrategia base: cooperar en primera interacción, replicar acción anterior
-  - Claramente programable para que todos entiendan las reglas
-  - Base para relaciones de confianza miembro-miembro
-
-- **Generous Tit for Tat**
-  - Parámetro de perdón configurable (default: ~10-15% de perdón)
-  - Previene espirales de venganza por ruido en la comunicación
-  - Balance entre justicia y preservación de cooperación
-
-- **Simulador de Estrategias**
-  - Validar que Tit for Tat generoso domina en entornos ruidosos
-  - Probar contra estrategias alternativas (All-C, All-D, Random, Grudger)
-  - Ajustar parámetros de perdón basados en resultados
+- **Tit for Tat Engine** — Estrategia base: cooperar en primera interacción, replicar acción anterior
+- **Generous Tit for Tat** — Parámetro de perdón configurable (default: ~10-15%), previene espirales de venganza
+- **Simulador de Estrategias** — Validar que Generous Tit for Tat domina en entornos ruidosos
 
 ### Entregables
 
@@ -153,150 +127,220 @@ MAGI no solo modela agentes racionales abstractos — resuelve problemas reales 
 
 ---
 
-## Fase 2 — Reputation System
+## Fase 2 — Sistema de Puntos
 
-**Objetivo:** Sistema de reputación dinámico con redención, donde la confianza se construye y recupera con acciones.
+**Objetivo:** Sistema de reputación dinámico con redención, donde la confianza se construye y recupera con acciones verificables.
 
 ### Componentes
 
-- **Score Dinámico**
-  - Puntuación basada en historial de acciones (no binaria)
-  - Decaimiento temporal: acciones antiguas pierden peso
-  - Fórmula ponderada: `score = Σ(action_value × time_decay^n)`
-
-- **Mecanismos de Redención**
-  - Acciones verificables que restauran reputación
-  - Progreso visible y medible hacia la recuperación
-  - Sin redención automática — requiere acción demostrada
-  - Umbral mínimo para recuperar privilegios
-
-- **Integración con Governing Engine**
-  - Scores afectan el peso de interacciones
-  - Membresía con reputación baja entra en modo "observación"
-  - Reputación alta otorga mayor peso en decisiones colectivas
+- **Score Dinámico** — Puntuación basada en historial de acciones con decaimiento temporal
+  - Fórmula: `score = Σ(action_value × time_decay^n)`
+- **Mecanismos de Redención** — Acciones verificables que restauran reputación, sin redención automática
+- **Integración con Governing Engine** — Scores afectan el peso de interacciones y privilegios de voto
+- **Flywheel Tracker** — Seguimiento de cada vuelta de la Rueda de Valor (proyectos iniciados, liquidez generada, inversión en automatización)
 
 ### Entregables
 
-- [ ] Módulo `reputation/` con cálculo de scores
+- [ ] Módulo `reputation/` con cálculo de scores por eje
 - [ ] Base de datos de historial de acciones
 - [ ] API de redención con verificación
 - [ ] Tests de decaimiento temporal y recuperación
+- [ ] Módulo `flywheel/` con tracking de valor generado
 
 ---
 
-## Fase 3 — Quality Gates
+## Fase 3 — Integración de Proyectos (The Hub)
 
-**Objetivo:** Filtros que aseguran la calidad de propuestas y acciones comunitarias, evitando la degradación del sistema.
+**Objetivo:** Gestionar proyectos comunitarios como el núcleo del ecosistema, conectando iniciativa, ejecución y reinversión.
+
+### Visión
+
+Los proyectos son el motor económico del ecosistema. Cada proyecto representa una vuelta de la Rueda de Valor: alguien trae una iniciativa (liquidez + idea), la comunidad ejecuta, se genera valor, y parte de ese valor se reinvierte en MAGI.
 
 ### Componentes
 
-- **Entry Gates (Filtros de Entrada)**
-  - Validación mínima para nuevas propuestas
-  - Verificación de información básica
-  - Prevención de spam y propuestas sin fundamento
+#### Gestión de Proyectos
 
-- **Review Gates (Revisiones por Pares)**
-  - Mecanismo de revisión entre miembros
-  - Basado en reputación: miembros con mayor reputación tienen más peso
-  - Plazos definidos para evitar cuellos de botella
+- **Registro de Proyectos:** Cada proyecto se registra con su líder, objetivos, aporte inicial y estado
+- **Equipo del Proyecto:** Asignación de miembros basado en reputación relevante (ej: `Technical` para desarrollo, `Strategic` para branding)
+- **Hitos y Entregables:** Seguimiento de progreso con checkpoints verificables
+- **Cierre y Valor Generado:** Al completar, se registra el valor generado (ingresos, código, impacto)
 
-- **Quality Metrics**
-  - Métricas de calidad comunitaria (participación, resolución, satisfacción)
-  - Dashboard de transparencia con indicadores
-  - Alertas tempranas de degradación
+#### Seguimiento de Liquidez y Aportes
+
+- **Pool de Liquidez:** Registro de aportes financieros y no financieros de cada miembro
+- **Distribución de Valor:** Al generar valor, se distribuye automáticamente según las reglas del proyecto y del ecosistema
+- **Reinversión Automática:** Un porcentaje del valor generado se redirige a la Fase 4 (Herramientas/Agentes)
+- **Transparencia:** Dashboard de liquidez visible para todos los miembros
+
+#### Integración con la Rueda de Valor
+
+```
+Proyecto Nuevo (Entrepreneurship +100)
+    ↓
+Aportes Iniciales (Stewardship +50, Entrepreneurship +50)
+    ↓
+Ejecución por Comunidad (Technical +10/PR, Community +15/mentoría)
+    ↓
+Valor Generado Registrado
+    ↓
+Distribución:
+  - 60% → Equipo del proyecto
+  - 20% → Pool de liquidez del ecosistema
+  - 20% → Reinversión en MAGI (Architecture +30-50)
+```
 
 ### Entregables
 
-- [ ] Módulo `quality-gates/` con entry y review gates
-- [ ] Configuración de umbrales mínimos
-- [ ] Dashboard de métricas de calidad
-- [ ] Tests de flujos de revisión
+- [ ] Módulo `projects/` con gestión de proyectos comunitarios
+- [ ] Sistema de registro de liquidez y aportes
+- [ ] Motor de distribución de valor generado
+- [ ] Dashboard de la Rueda de Valor
+- [ ] Tests de flujos de proyecto completo (inicio → ejecución → cierre)
 
 ---
 
-## Fase 4 — Gobernanza Policéntrica (Ostrom)
+## Fase 4 — Ecosistema de Herramientas (MCPs/Agentes)
 
-**Objetivo:** Implementar los 8 principios de Elinor Ostrom para gobernanza de bienes comunes.
+**Objetivo:** Crear agentes especializados y MCPs que automatizen flujos del ecosistema, escalando la capacidad sin escalar la fricción humana.
+
+### Visión
+
+La reinversión de la Rueda de Valor alimenta la creación de herramientas. Cada vuelta del ciclo genera recursos para construir agentes más inteligentes y MCPs más poderosos. Esto reduce la carga manual en la comunidad y permite ejecutar más proyectos con menos fricción.
 
 ### Componentes
 
-- **Límites Claros**
-  - Definición de pertenencia a la comunidad
-  - Registro de miembros con verificación
-  - Mecanismos de incorporación y salida
+#### Agentes Especializados
 
-- **Reglas Proporcionales**
-  - Normas adaptadas al contexto local
-  - Configurables por la comunidad vía collective-choice
-  - Versionado y historial de cambios a reglas
+- **Agente de Branding:** Asiste al rol `Strategic` en desarrollo de identidad visual, copy y posicionamiento de proyectos
+- **Agente de Code Review:** Asiste al rol `Technical` en revisión automatizada de calidad, patrones y deuda técnica
+- **Agente de Stewardship:** Asiste al rol `Stewardship` en seguimiento de presupuesto, forecasting y alertas de sostenibilidad
+- **Agente de Onboarding:** Asiste al rol `Community` en onboarding automatizado de nuevos miembros, con personalización basada en su perfil de reputación
 
-- **Collective-Choice**
-  - Mecanismos de votación ponderada por reputación
-  - Propuestas de modificación de reglas
-  - Quórums y mayorías configurables
+Cada agente se diseña e implementa con **+50 puntos de reputación `Architecture`** para su creador.
 
-- **Monitoreo Mutuo**
-  - Logs verificables de todas las acciones
-  - Capacidad de cualquier miembro de auditar
-  - Herramientas de reporte y alerta
+#### MCPs (Model Context Protocols)
 
-- **Sanciones Graduales**
-  - Escalona respuesta al incumplimiento: advertencia → restricción → suspensión → expulsión
-  - Proporcional a la severidad y frecuencia
-  - Transparente y predecible
+- **MCP de Git/GitHub:** Integración con repositorios para monitoreo automático de PRs, issues y métricas de contribución
+- **MCP de Pagos/Finanzas:** Integración con pasarelas de pago para seguimiento de liquidez y distribución de valor
+- **MCP de Comunicación:** Integración con canales de comunicación (Discord, Slack) para monitoreo de actividad comunitaria
+- **MCP de Proyectos:** Integración con herramientas de gestión (Linear, Notion, GitHub Projects) para seguimiento de hitos
 
-- **Resolución de Conflictos Accesible**
-  - Mediación interna de bajo costo
-  - Plazos definidos para resolución
-  - Registro de conflictos y resoluciones
+Cada MCP creado e integrado otorga **+40 puntos de reputación `Architecture`** para su creador.
 
-- **Reconocimiento de Derechos**
-  - La comunidad reconoce su derecho a organizarse
-  - Interfaz con sistemas externos si es necesario
-  - Documentación de autonomía
+#### Infraestructura de Agentes
+
+- **Agente Registry:** Catálogo de agentes disponibles, sus capacidades y reputación del creador
+- **Agent Communication Bus:** Protocolo para que los agentes hablen entre sí y con MAGI Core
+- **Agent Sandbox:** Entorno seguro para probar nuevos agentes antes de desplegarlos en producción
 
 ### Entregables
 
-- [ ] Módulo `governance/` con implementación de principios Ostrom
-- [ ] Sistema de voting con ponderación por reputación
-- [ ] Motor de sanciones graduadas
-- [ ] Sistema de mediación y resolución de conflictos
-- [ ] Tests de simulación de gobernanza
+- [ ] Módulo `agents/` con framework de agentes especializados
+- [ ] Agente de Branding implementado
+- [ ] MCP de Git/GitHub implementado
+- [ ] MCP de Pagos/Finanzas implementado
+- [ ] Agent Registry con catálogo y descubrimiento
+- [ ] Agent Communication Bus con protocolo definido
+- [ ] Tests de integración de agentes con MAGI Core
 
 ---
 
-## Fase 5 — Interfaz Comunitaria
+## Fase 5 — Automatización Total
 
-**Objetivo:** Exponer los datos del sistema de forma transparente para que cualquier miembro pueda auditar y participar.
+**Objetivo:** Hermes como sensor permanente del ecosistema, cerrando el ciclo de la Rueda de Valor con monitoreo en tiempo real y respuestas automáticas.
+
+### Visión
+
+Hermes es el sistema nervioso del ecosistema. Mientras MAGI Core es el cerebro que decide, Hermes es lo que ve, escucha y siente. Juntos, forman un sistema autónomo que monitorea, alerta y actúa — reduciendo la fricción humana al mínimo y permitiendo que la comunidad se enfoque en lo que mejor hace: crear valor.
 
 ### Componentes
 
-- **Transparency Dashboard**
-  - Vista de scores de reputación de todos los miembros
-  - Historial de acciones y decisiones
-  - Estado actual de reglas y propuestas
+#### Hermes — El Sensor
 
-- **Member Profiles**
-  - Perfil con score, historial de redenciones, contribuciones
-  - Línea de tiempo de acciones
-  - Badges o reconocimientos por contribuciones
+- **Monitoreo en Tiempo Real:** Escucha todos los canales (Git, Discord, MCPs, proyectos) y detecta eventos relevantes
+- **Alertas Inteligentes:** Genera alertas basadas en patrones, no en reglas estáticas. Detecta burnout, conflictos, oportunidades
+- **Event Stream:** Publica eventos normalizados que MAGI Core consume para tomar decisiones
+- **Health Checks:** Monitorea la salud del ecosistema (participación, liquidez, progreso de proyectos, reputación)
 
-- **Action Log**
-  - Registro inmutable de todas las acciones relevantes
-  - Consulta y filtrado por tipo, miembro, fecha
-  - Exportable para auditoría externa
+#### MAGI Core — El Cerebro Automático
 
-- **Community API**
-  - endpoints para consulta de datos comunitarios
-  - Webhooks para eventos relevantes
-  - Documentación abierta
+- **Reglas Adaptativas:** MAGI ajusta sus propias reglas basándose en datos de Hermes (no requiere votación manual para ajustes menores)
+- **Respuestas Automatizadas:** Acciones automáticas para eventos comunes (ej: si un miembro baja de umbral → notificación automática de mentoría)
+- **Flywheel Optimizer:** Analiza la eficiencia de la Rueda de Valor y sugiere optimizaciones
+
+#### Ciclo Cerrado
+
+```
+Hermes detecta evento → MAGI analiza → MAGI decide → Acción automática → Hermes verifica → MAGI ajusta
+```
 
 ### Entregables
 
-- [ ] Módulo `interface/` con dashboard y perfiles
-- [ ] API REST/GraphQL para consulta comunitaria
-- [ ] Action log con consulta y filtrado
-- [ ] Tests de integridad de datos
+- [ ] Módulo `hermes/` con sensor de monitoreo en tiempo real
+- [ ] Event stream normalizado con todos los tipos de eventos del ecosistema
+- [ ] Motor de reglas adaptativas en MAGI Core
+- [ ] Sistema de respuestas automatizadas configurables
+- [ ] Flywheel Optimizer con análisis de eficiencia
+- [ ] Dashboard de automatización y salud del ecosistema
+
+---
+
+## Arquitectura Técnica
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        MAGI ECOSYSTEM                                │
+│                                                                      │
+│  ┌──────────────────┐    ┌──────────────────┐    ┌───────────────┐  │
+│  │     Hermes       │    │   MAGI Core      │    │   Proyectos   │  │
+│  │   (Sensor)       │    │   (Cerebro)      │    │     (Hub)     │  │
+│  │                  │    │                  │    │               │  │
+│  │ ┌──────────────┐ │    │ ┌──────────────┐ │    │ ┌───────────┐ │  │
+│  │ │ Event        │ │    │ │ Governing    │ │    │ │ Project   │ │  │
+│  │ │ Collectors   │ │◄───►│ │ Engine       │ │◄───►│ │ Manager   │ │  │
+│  │ │ (Git, Discord│ │    │ │ (Tit for Tat │ │    │ │ (Liquidez │ │  │
+│  │ │  MCPs, APIs) │ │    │ │  + Reputation│ │    │ │  + Valor) │ │  │
+│  │ └──────┬───────┘ │    │ │  + Flywheel) │ │    │ └────┬──────┘ │  │
+│  │        │         │    │ └──────┬───────┘ │    │    │       │  │
+│  │ ┌──────▼───────┐ │    │ ┌──────▼───────┐ │    │ ┌──▼───────┐ │  │
+│  │ │ Pattern      │ │    │ │ Policy      │ │    │ │ MCP      │ │  │
+│  │ │ Detection    │ │    │ │ Layer       │ │    │ │ Gateway  │ │  │
+│  │ │ (Alerts,     │ │    │ │ (Voting,    │ │    │ │ (Git,    │ │  │
+│  │ │  Health      │ │    │ │  Ostrom,    │ │    │ │  Payments│ │  │
+│  │ │  Checks)     │ │    │ │  Adaptive   │ │    │ │  Comms)  │ │  │
+│  │ └──────────────┘ │    │ │  Rules)     │ │    │ └──────────┘ │  │
+│  └────────┬─────────┘    └──────┬───────┘    └──────┬────────┘  │
+│           │                     │                   │             │
+│           └──────────┬──────────┼───────────────────┘             │
+│                      │          │                                  │
+│           ┌──────────▼──────────▼──────────────────┐              │
+│           │        Agent Communication Bus          │              │
+│           │   (Agent Registry + Inter-Agent Protocol)│              │
+│           │                                          │              │
+│           │  ┌──────────┐  ┌──────────┐  ┌────────┐ │              │
+│           │  │ Branding │  │ Code     │  │Steward-│ │              │
+│           │  │ Agent    │  │ Review   │  │ship     │ │              │
+│           │  │          │  │ Agent    │  │ Agent   │ │              │
+│           │  └──────────┘  └──────────┘  └────────┘ │              │
+│           └──────────────────────────────────────────┘              │
+│                                                                      │
+│  ┌────────────────────────────────────────────────────────────────┐  │
+│  │                  Community Interface                           │  │
+│  │  - Flywheel Dashboard  - Transparency Log  - Member Profiles   │  │
+│  └────────────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### Flujo de Datos
+
+1. **Hermes** captura eventos de todos los canales (Git, Discord, MCPs, proyectos)
+2. **Pattern Detection** analiza eventos en busca de patrones relevantes (burnout, oportunidades, conflictos)
+3. **Event Stream** normaliza y publica eventos al bus de comunicación
+4. **MAGI Core** consume eventos, actualiza reputación, ejecuta governing engine y aplica reglas adaptativas
+5. **Agentes Especializados** intervienen en flujos específicos (branding, code review, stewardship)
+6. **Proyectos (Hub)** gestionan liquidez, valor generado y reinversión en la Rueda de Valor
+7. **Community Interface** expone todo para transparencia y participación
 
 ---
 
@@ -304,27 +348,27 @@ MAGI no solo modela agentes racionales abstractos — resuelve problemas reales 
 
 ```
 Fase 0: Roles y Protección Comunitaria
-    ↓ (define perfiles multidimensionales)
+    ↓ (define perfiles multidimensionales — 6 ejes)
 Fase 1: Governing Engine
     ↓ (provece scores de cooperación por eje)
-Fase 2: Reputation System
-    ↓ (provece reputación para ponderación por eje)
-Fase 3: Quality Gates
-    ↓ (filtra propuestas para gobernanza)
-Fase 4: Gobernanza Policéntrica
-    ↓ (genera decisiones y reglas)
-Fase 5: Interfaz Comunitaria
-    ↓ (expone datos para transparencia)
+Fase 2: Sistema de Puntos
+    ↓ (provece reputación para ponderación + Flywheel Tracker)
+Fase 3: Integración de Proyectos (The Hub)
+    ↓ (conecta iniciativa → ejecución → ganancia → reinversión)
+Fase 4: Ecosistema de Herramientas
+    ↓ (agentes especializados + MCPs escalan la capacidad)
+Fase 5: Automatización Total
+    ↓ (Hermes cierra el ciclo con monitoreo en tiempo real)
 ```
 
-Cada fase construye sobre la anterior. Sin roles definidos, no tiene sentido calcular reputación. Sin reputación, no tiene sentido ponderar votos. Sin governing engine, no hay forma de saber qué acciones son positivas o negativas.
+Cada fase construye sobre la anterior. Sin roles definidos, no tiene sentido calcular reputación. Sin reputación, no tiene sentido ponderar votos. Sin proyectos gestionados, no hay valor que reinvertir. Sin agentes y MCPs, la escala está limitada por la fricción humana. Sin Hermes, el sistema no puede ser verdaderamente autónomo.
 
 ---
 
 ## Validación y Testing
 
 ### Simulaciones de Teoría de Juegos
-- Torneos repetidos entre estrategias (Tit for Tat, Generous Tit for Tat, All-C, All-D, Random, Grudger, Two-Tits)
+- Torneos repetidos entre estrategias (Tit for Tat, Generous Tit for Tat, All-C, All-D, Random, Grudger)
 - Medir cooperación a largo plazo en entornos con ruido
 - Validar que Generous Tit for Tat es óptimo con >10% de error
 
@@ -333,12 +377,18 @@ Cada fase construye sobre la anterior. Sin roles definidos, no tiene sentido cal
 - Probar resistencia a ataques de spam, colusión, degradación
 - Validar que los principios de Ostrom previenen la tragedia de los comunes
 
+### Simulaciones de la Rueda de Valor
+- Simular ciclos completos: proyecto nuevo → ejecución → valor → reinversión
+- Validar que la reinversión en automatización mejora la eficiencia de futuras vueltas
+- Medir impacto de agentes y MCPs en la fricción del ecosistema
+
 ### Tests de Integración
-- Flujo completo: acción → reputación → governing decision → quality gate → governance rule
-- Casos edge: redención, sanciones, conflictos
+- Flujo completo: acción → reputación → governing decision → quality gate → governance rule → flywheel update
+- Casos edge: redención, sanciones, conflictos, burnout detection
+- Flujo Hermes→MAGI→Proyectos: evento detectado → decisión → acción → verificación
 
 ---
 
 **Versión:** 1.0.0
 **Última actualización:** 2026-04-19
-**Comunidad:** Joyan
+**Ecosistema:** Joyan
