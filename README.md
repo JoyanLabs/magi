@@ -16,32 +16,14 @@ MAGI opera bajo la premisa de que las comunidades son sistemas económicos multi
 
 ## La Rueda de Valor (The Flywheel)
 
-```
-    ┌──────────────────────────────────────────────────┐
-    │                                                  │
-    │   ┌────────────┐    ┌────────────┐              │
-    │   │            │    │            │              │
-    │   │  Iniciativa │───>│  Ejecución │              │
-    │   │ (Proyectos) │    │  (Comunidad)│              │
-    │   │            │    │            │              │
-    │   └────────────┘    └─────┬──────┘              │
-    │            ▲              │                     │
-    │            │              ▼                     │
-    │            │       ┌────────────┐              │
-    │            │       │            │              │
-    │            └───────│   Ganancia │              │
-    │                    │  (Valor)   │              │
-    │                    └─────┬──────┘              │
-    │                          │                     │
-    │                          ▼                     │
-    │                    ┌────────────┐              │
-    │                    │            │              │
-    │                    │ Reinversión │───> MAGI    │
-    │                    │ (Automat.  │    evoluciona
-    │                    │  & Tools)  │    y se mejora
-    │                    └────────────┘              │
-    │                                                  │
-    └──────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Flywheel["La Rueda de Valor"]
+        A[Iniciativa<br/>Proyectos] -->|Ejecución| B[Ejecución<br/>Comunidad]
+        B -->|Genera| C[Ganancia<br/>Valor]
+        C -->|Se reinvierte en| D[Reinversión<br/>Automatización & Tools]
+        D -->|MAGI evoluciona| A
+    end
 ```
 
 La Rueda de Valor es el motor económico de MAGI. Cada giro del ciclo genera más valor para todos los participantes:
@@ -126,40 +108,54 @@ MAGI reconoce que no todos los participantes son miembros de pleno derecho. El r
 
 ## Arquitectura
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                       MAGI ECOSYSTEM                             │
-│                                                                  │
-│  ┌─────────────┐    ┌──────────────────┐    ┌────────────────┐  │
-│  │   HERMES    │    │    MAGI CORE     │    │   PROJECTS     │  │
-│  │ (Centinela)  │───>│   (Cerebro)      │<──>│   (Hub)        │  │
-│  │             │    │                  │    │                │  │
-│  │ - Monitoreo │    │ ┌──────────────┐ │    │ - Gestión      │  │
-│  │ - Alertas   │    │ │ Governing    │ │    │ - Liquidez     │  │
-│  │ - Datos     │    │ │ Engine       │ │    │ - Seguimiento  │  │
-│  │ - Feedback  │    │ │              │ │    │                │  │
-│  │             │    │ ┌──────────────┐ │    │ - Proyectos    │  │
-│  │             │    │ │ Reputation   │ │    │ - Recursos     │  │
-│  │             │    │ │ System       │ │    │                │  │
-│  │             │    │ │              │ │    │                │  │
-│  │             │    │ ┌──────────────┐ │    │                │  │
-│  │             │    │ │ Agent Mgmt   │ │    │                │  │
-│  │             │    │ │ & Automation │ │    │                │  │
-│  │             │    │ └──────────────┘ │    │                │  │
-│  └─────────────┘    └──────────────────┘    └────────────────┘  │
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────┐    │
-│  │            Flywheel Engine                               │    │
-│  │  - Value tracking (Proyectos -> Ganancia -> Reinversión)  │    │
-│  │  - Point Matrix (Architecture, Entrepreneurship, etc.)   │    │
-│  │  - Tool Ecosystem (MCPs, Agentes especializados)         │    │
-│  └──────────────────────────────────────────────────────────┘    │
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────┐    │
-│  │            Policy Layer & Community Interface             │    │
-│  │  - Ostrom principles  - Transparency  - Voting            │    │
-│  └──────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph MAGI_Ecosystem["MAGI ECOSYSTEM"]
+        direction TB
+
+        subgraph Hermes["Hermes (Centinela)"]
+            H1[Monitoreo]
+            H2[Alertas]
+            H3[Datos]
+            H4[Feedback]
+        end
+
+        subgraph Core["MAGI Core (Cerebro)"]
+            direction TB
+            GE[Governing Engine]
+            RS[Reputation System]
+            AM[Agent Mgmt & Automation]
+        end
+
+        subgraph Projects["Projects Hub"]
+            direction TB
+            P1[Gestión]
+            P2[Liquidez]
+            P3[Seguimiento]
+            P4[Proyectos]
+            P5[Recursos]
+        end
+
+        Hermes -->|Eventos| Core
+        Core <-->|Datos| Projects
+    end
+
+    Flywheel <-->|Integración| MAGI_Ecosystem
+
+    subgraph Flywheel["Flywheel Engine"]
+        F1[Value Tracking]
+        F2[Point Matrix]
+        F3[Tool Ecosystem]
+    end
+
+    Policy <-->|Aplica reglas| Core
+
+    subgraph Policy["Policy Layer & Community Interface"]
+        direction TB
+        PL[Ostrom Principles]
+        PT[Transparency]
+        PV[Voting]
+    end
 ```
 
 ### Componentes

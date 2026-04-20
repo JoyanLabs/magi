@@ -175,19 +175,19 @@ Los proyectos son el motor económico del ecosistema. Cada proyecto representa u
 
 #### Integración con la Rueda de Valor
 
-```
-Proyecto Nuevo (Entrepreneurship +100)
-    ↓
-Aportes Iniciales (Stewardship +50, Entrepreneurship +50)
-    ↓
-Ejecución por Comunidad (Technical +10/PR, Community +15/mentoría)
-    ↓
-Valor Generado Registrado
-    ↓
-Distribución:
-  - 60% → Equipo del proyecto
-  - 20% → Pool de liquidez del ecosistema
-  - 20% → Reinversión en MAGI (Architecture +30-50)
+```mermaid
+flowchart LR
+    P[Proyecto Nuevo<br/>Entrepreneurship +100] --> A[Aportes Iniciales<br/>Stewardship +50, Entrepreneurship +50]
+    A --> E[Ejecución por Comunidad<br/>Technical +10/PR, Community +15/mentoría]
+    E --> V[Valor Generado Registrado]
+    V --> D[Distribución]
+    
+    subgraph Distribución["Distribución de Valor"]
+        direction TB
+        D1[60% → Equipo del proyecto]
+        D2[20% → Pool de liquidez<br/>del ecosistema]
+        D3[20% → Reinversión en MAGI<br/>Architecture +30-50]
+    end
 ```
 
 ### Entregables
@@ -271,8 +271,14 @@ Hermes es la subdivisión vigilante de MAGI. MAGI es el cerebro que orquesta y d
 
 #### Ciclo Cerrado
 
-```
-Hermes detecta evento → MAGI analiza → MAGI decide → Acción automática → Hermes verifica → MAGI ajusta
+```mermaid
+flowchart LR
+    H[Hermes detecta evento] --> M[MAGI analiza]
+    M --> D[MAGI decide]
+    D --> A[Acción automática]
+    A --> V[Hermes verifica]
+    V --> J[MAGI ajusta]
+    J --> H
 ```
 
 ### Entregables
@@ -288,48 +294,53 @@ Hermes detecta evento → MAGI analiza → MAGI decide → Acción automática �
 
 ## Arquitectura Técnica
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        MAGI ECOSYSTEM                                │
-│                                                                      │
-│  ┌──────────────────┐    ┌──────────────────┐    ┌───────────────┐  │
-│  │     Hermes       │    │   MAGI Core      │    │   Proyectos   │  │
-│  │ (Centinela)      │    │   (Cerebro)      │    │     (Hub)     │  │
-│  │                  │    │                  │    │               │  │
-│  │ ┌──────────────┐ │    │ ┌──────────────┐ │    │ ┌───────────┐ │  │
-│  │ │ Event        │ │    │ │ Governing    │ │    │ │ Project   │ │  │
-│  │ │ Collectors   │ │◄───►│ │ Engine       │ │◄───►│ │ Manager   │ │  │
-│  │ │ (Git, Discord│ │    │ │ (Tit for Tat │ │    │ │ (Liquidez │ │  │
-│  │ │  MCPs, APIs) │ │    │ │  + Reputation│ │    │ │  + Valor) │ │  │
-│  │ └──────┬───────┘ │    │ │  + Flywheel) │ │    │ └────┬──────┘ │  │
-│  │        │         │    │ └──────┬───────┘ │    │    │       │  │
-│  │ ┌──────▼───────┐ │    │ ┌──────▼───────┐ │    │ ┌──▼───────┐ │  │
-│  │ │ Pattern      │ │    │ │ Policy      │ │    │ │ MCP      │ │  │
-│  │ │ Detection    │ │    │ │ Layer       │ │    │ │ Gateway  │ │  │
-│  │ │ (Alerts,     │ │    │ │ (Voting,    │ │    │ │ (Git,    │ │  │
-│  │ │  Health      │ │    │ │  Ostrom,    │ │    │ │  Payments│ │  │
-│  │ │  Checks)     │ │    │ │  Adaptive   │ │    │ │  Comms)  │ │  │
-│  │ └──────────────┘ │    │ │  Rules)     │ │    │ └──────────┘ │  │
-│  └────────┬─────────┘    └──────┬───────┘    └──────┬────────┘  │
-│           │                     │                   │             │
-│           └──────────┬──────────┼───────────────────┘             │
-│                      │          │                                  │
-│           ┌──────────▼──────────▼──────────────────┐              │
-│           │        Agent Communication Bus          │              │
-│           │   (Agent Registry + Inter-Agent Protocol)│              │
-│           │                                          │              │
-│           │  ┌──────────┐  ┌──────────┐  ┌────────┐ │              │
-│           │  │ Branding │  │ Code     │  │Steward-│ │              │
-│           │  │ Agent    │  │ Review   │  │ship     │ │              │
-│           │  │          │  │ Agent    │  │ Agent   │ │              │
-│           │  └──────────┘  └──────────┘  └────────┘ │              │
-│           └──────────────────────────────────────────┘              │
-│                                                                      │
-│  ┌────────────────────────────────────────────────────────────────┐  │
-│  │                  Community Interface                           │  │
-│  │  - Flywheel Dashboard  - Transparency Log  - Member Profiles   │  │
-│  └────────────────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph MAGI_Ecosystem["MAGI ECOSYSTEM"]
+        direction TB
+
+        subgraph Hermes["Hermes (Centinela)"]
+            direction TB
+            HC[Event Collectors<br/>Git, Discord, MCPs, APIs]
+            PD[Pattern Detection<br/>Alerts, Health Checks]
+        end
+
+        subgraph Core["MAGI Core (Cerebro)"]
+            direction TB
+            GE[Governing Engine<br/>Tit for Tat + Reputation + Flywheel]
+            PL[Policy Layer<br/>Voting, Ostrom, Adaptive Rules]
+        end
+
+        subgraph Projects["Proyectos (Hub)"]
+            direction TB
+            PM[Project Manager<br/>Liquidez + Valor]
+            MG[MCP Gateway<br/>Git, Payments, Comms]
+        end
+
+        Hermes -->|Eventos| Core
+        Core <-->|Datos| Projects
+    end
+
+    Core <-->|Comunicación| Agents
+
+    subgraph Agents["Agent Communication Bus"]
+        direction TB
+        direction LR
+        subgraph AgentRegistry["Agent Registry + Inter-Agent Protocol"]
+            BA[Branding Agent]
+            CRA[Code Review Agent]
+            SA[Stewardship Agent]
+        end
+    end
+
+    Core <-->|Reglas| UI
+
+    subgraph UI["Community Interface"]
+        direction TB
+        FWD[Flywheel Dashboard]
+        TLog[Transparency Log]
+        MP[Member Profiles]
+    end
 ```
 
 ### Flujo de Datos
