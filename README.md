@@ -113,7 +113,7 @@ graph TB
     subgraph MAGI_Ecosystem["MAGI ECOSYSTEM"]
         direction TB
 
-        subgraph Hermes["Hermes (Centinela)"]
+        subgraph Centinela["El Centinela"]
             H1[Monitoreo]
             H2[Alertas]
             H3[Datos]
@@ -136,7 +136,7 @@ graph TB
             P5[Recursos]
         end
 
-        Hermes -->|Eventos| Core
+        Centinela -->|Eventos| Core
         Core <-->|Datos| Projects
     end
 
@@ -160,7 +160,7 @@ graph TB
 
 ### Componentes
 
-- **Hermes (Centinela)** — Subdivisión headless de MAGI que automatiza el monitoreo y la vigilancia del ecosistema. MAGI no solo media; vigila y ejecuta a través de agentes headless como Hermes. Captura datos, genera alertas y provee feedback en tiempo real al ecosistema.
+- **El Centinela** — Subdivisión headless de MAGI que automatiza el monitoreo y la vigilancia del ecosistema. MAGI no solo media; vigila y ejecuta a través de agentes headless. Captura datos, genera alertas y provee feedback en tiempo real al ecosistema.
 - **MAGI Core (Cerebro)** — Motor central que aplica Teoría de Juegos, gestiona reputación, agentes autónomos y automatización.
 - **Projects Hub (Hub)** — Gestión de proyectos comunitarios, seguimiento de liquidez, aportes y recursos.
 - **Flywheel Engine** — Motor económico que rastrea el ciclo de valor y coordina la reinversión en automatización.
@@ -202,7 +202,7 @@ graph TB
 - [ ] Integración de herramientas en el Flywheel
 
 ### Fase 5 — Automatización Total
-- [ ] Hermes (Centinela): agente headless de monitoreo y vigilancia
+- [ ] El Centinela: agente headless de monitoreo y vigilancia
 - [ ] Monitoreo automático del ecosistema
 - [ ] Alertas predictivas y respuestas automáticas
 - [ ] Ciclo de reinversión automatizado

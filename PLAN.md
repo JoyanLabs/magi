@@ -248,15 +248,15 @@ Cada MCP creado e integrado otorga **+40 puntos de reputación `Architecture`** 
 
 ## Fase 5 — Automatización Total
 
-**Objetivo:** Hermes como Centinela del ecosistema, cerrando el ciclo de la Rueda de Valor con monitoreo en tiempo real y respuestas automáticas.
+**Objetivo:** El Centinela como subsistema de monitoreo del ecosistema, cerrando el ciclo de la Rueda de Valor con monitoreo en tiempo real y respuestas automáticas.
 
 ### Visión
 
-Hermes es la subdivisión vigilante de MAGI. MAGI es el cerebro que orquesta y decide; Hermes es su "centinela" headless que monitorea, alerta y actúa bajo las órdenes de MAGI. Juntos, forman un sistema autónomo que vigila, detecta y responde — reduciendo la fricción humana al mínimo y permitiendo que la comunidad se enfoque en lo que mejor hace: crear valor.
+Centinela es la subdivisión vigilante de MAGI. MAGI es el cerebro que orquesta y decide; Centinela es su "centinela" headless que monitorea, alerta y actúa bajo las órdenes de MAGI. Juntos, forman un sistema autónomo que vigila, detecta y responde — reduciendo la fricción humana al mínimo y permitiendo que la comunidad se enfoque en lo que mejor hace: crear valor.
 
 ### Componentes
 
-#### Hermes — El Centinela
+#### El Centinela
 
 - **Monitoreo en Tiempo Real:** Escucha todos los canales (Git, Discord, MCPs, proyectos) y detecta eventos relevantes
 - **Alertas Inteligentes:** Genera alertas basadas en patrones, no en reglas estáticas. Detecta burnout, conflictos, oportunidades
@@ -265,7 +265,7 @@ Hermes es la subdivisión vigilante de MAGI. MAGI es el cerebro que orquesta y d
 
 #### MAGI Core — El Cerebro Automático
 
-- **Reglas Adaptativas:** MAGI ajusta sus propias reglas basándose en datos de Hermes (no requiere votación manual para ajustes menores)
+- **Reglas Adaptativas:** MAGI ajusta sus propias reglas basándose en datos de Centinela (no requiere votación manual para ajustes menores)
 - **Respuestas Automatizadas:** Acciones automáticas para eventos comunes (ej: si un miembro baja de umbral → notificación automática de mentoría)
 - **Flywheel Optimizer:** Analiza la eficiencia de la Rueda de Valor y sugiere optimizaciones
 
@@ -273,10 +273,10 @@ Hermes es la subdivisión vigilante de MAGI. MAGI es el cerebro que orquesta y d
 
 ```mermaid
 flowchart LR
-    H[Hermes detecta evento] --> M[MAGI analiza]
+    H[Centinela detecta evento] --> M[MAGI analiza]
     M --> D[MAGI decide]
     D --> A[Acción automática]
-    A --> V[Hermes verifica]
+    A --> V[Centinela verifica]
     V --> J[MAGI ajusta]
     J --> H
 ```
@@ -299,7 +299,7 @@ graph TB
     subgraph MAGI_Ecosystem["MAGI ECOSYSTEM"]
         direction TB
 
-        subgraph Hermes["Hermes (Centinela)"]
+        subgraph Centinela["El Centinela"]
             direction TB
             HC[Event Collectors<br/>Git, Discord, MCPs, APIs]
             PD[Pattern Detection<br/>Alerts, Health Checks]
@@ -317,7 +317,7 @@ graph TB
             MG[MCP Gateway<br/>Git, Payments, Comms]
         end
 
-        Hermes -->|Eventos| Core
+        Centinela -->|Eventos| Core
         Core <-->|Datos| Projects
     end
 
@@ -345,7 +345,7 @@ graph TB
 
 ### Flujo de Datos
 
-1. **Hermes** captura eventos de todos los canales (Git, Discord, MCPs, proyectos)
+1. **Centinela** captura eventos de todos los canales (Git, Discord, MCPs, proyectos)
 2. **Pattern Detection** analiza eventos en busca de patrones relevantes (burnout, oportunidades, conflictos)
 3. **Event Stream** normaliza y publica eventos al bus de comunicación
 4. **MAGI Core** consume eventos, actualiza reputación, ejecuta governing engine y aplica reglas adaptativas
@@ -369,10 +369,10 @@ Fase 3: Integración de Proyectos (The Hub)
 Fase 4: Ecosistema de Herramientas
     ↓ (agentes especializados + MCPs escalan la capacidad)
 Fase 5: Automatización Total
-    ↓ (Hermes cierra el ciclo con monitoreo en tiempo real)
+    ↓ (Centinela cierra el ciclo con monitoreo en tiempo real)
 ```
 
-Cada fase construye sobre la anterior. Sin roles definidos, no tiene sentido calcular reputación. Sin reputación, no tiene sentido ponderar votos. Sin proyectos gestionados, no hay valor que reinvertir. Sin agentes y MCPs, la escala está limitada por la fricción humana. Sin Hermes, el sistema no puede ser verdaderamente autónomo.
+Cada fase construye sobre la anterior. Sin roles definidos, no tiene sentido calcular reputación. Sin reputación, no tiene sentido ponderar votos. Sin proyectos gestionados, no hay valor que reinvertir. Sin agentes y MCPs, la escala está limitada por la fricción humana. Sin Centinela, el sistema no puede ser verdaderamente autónomo.
 
 ---
 
@@ -396,7 +396,7 @@ Cada fase construye sobre la anterior. Sin roles definidos, no tiene sentido cal
 ### Tests de Integración
 - Flujo completo: acción → reputación → governing decision → quality gate → governance rule → flywheel update
 - Casos edge: redención, sanciones, conflictos, burnout detection
-- Flujo Hermes→MAGI→Proyectos: evento detectado → decisión → acción → verificación
+- Flujo Centinela→MAGI→Proyectos: evento detectado → decisión → acción → verificación
 
 ---
 
