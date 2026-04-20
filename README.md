@@ -131,8 +131,8 @@ MAGI reconoce que no todos los participantes son miembros de pleno derecho. El r
 │                       MAGI ECOSYSTEM                             │
 │                                                                  │
 │  ┌─────────────┐    ┌──────────────────┐    ┌────────────────┐  │
-  │  │   HERMES    │    │    MAGI CORE     │    │   PROJECTS     │  │
-  │  │ (Ojo Vigilante)│───>│   (Cerebro)      │<──>│   (Hub)        │  │
+│  │   HERMES    │    │    MAGI CORE     │    │   PROJECTS     │  │
+│  │ (Centinela)  │───>│   (Cerebro)      │<──>│   (Hub)        │  │
 │  │             │    │                  │    │                │  │
 │  │ - Monitoreo │    │ ┌──────────────┐ │    │ - Gestión      │  │
 │  │ - Alertas   │    │ │ Governing    │ │    │ - Liquidez     │  │
@@ -164,7 +164,7 @@ MAGI reconoce que no todos los participantes son miembros de pleno derecho. El r
 
 ### Componentes
 
-- **Hermes (Ojo Vigilante)** — Subdivisión headless de MAGI que automatiza el monitoreo y la vigilancia del ecosistema. MAGI no solo media; vigila y ejecuta a través de agentes headless como Hermes. Captura datos, genera alertas y provee feedback en tiempo real al ecosistema.
+- **Hermes (Centinela)** — Subdivisión headless de MAGI que automatiza el monitoreo y la vigilancia del ecosistema. MAGI no solo media; vigila y ejecuta a través de agentes headless como Hermes. Captura datos, genera alertas y provee feedback en tiempo real al ecosistema.
 - **MAGI Core (Cerebro)** — Motor central que aplica Teoría de Juegos, gestiona reputación, agentes autónomos y automatización.
 - **Projects Hub (Hub)** — Gestión de proyectos comunitarios, seguimiento de liquidez, aportes y recursos.
 - **Flywheel Engine** — Motor económico que rastrea el ciclo de valor y coordina la reinversión en automatización.
@@ -206,7 +206,7 @@ MAGI reconoce que no todos los participantes son miembros de pleno derecho. El r
 - [ ] Integración de herramientas en el Flywheel
 
 ### Fase 5 — Automatización Total
-- [ ] Hermes (Ojo Vigilante): agente headless de monitoreo y vigilancia
+- [ ] Hermes (Centinela): agente headless de monitoreo y vigilancia
 - [ ] Monitoreo automático del ecosistema
 - [ ] Alertas predictivas y respuestas automáticas
 - [ ] Ciclo de reinversión automatizado
